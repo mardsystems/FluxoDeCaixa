@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Application", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Application.Core", "FluxoDeCaixa.Application.Core\FluxoDeCaixa.Application.Core.csproj", "{4E0BCE51-9CDA-4DC7-A65C-53DFB9A06542}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Domain", "FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj", "{2F7F8E0E-9263-4343-A152-8C4A81D5240C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{4E0BCE51-9CDA-4DC7-A65C-53DFB9A06542}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E0BCE51-9CDA-4DC7-A65C-53DFB9A06542}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E0BCE51-9CDA-4DC7-A65C-53DFB9A06542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F7F8E0E-9263-4343-A152-8C4A81D5240C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F7F8E0E-9263-4343-A152-8C4A81D5240C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F7F8E0E-9263-4343-A152-8C4A81D5240C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F7F8E0E-9263-4343-A152-8C4A81D5240C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
 		{DEFE86C8-ACCC-4F37-8920-0391F36B163A} = {EC5C55BA-10E7-4C0F-BA8F-33FFC4D36D8C}
 		{4E0BCE51-9CDA-4DC7-A65C-53DFB9A06542} = {EC5C55BA-10E7-4C0F-BA8F-33FFC4D36D8C}
+		{2F7F8E0E-9263-4343-A152-8C4A81D5240C} = {3D53E1CF-78D8-434C-88F6-21F0B3C9AC65}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7C1E9A1-3A37-48C1-AC8D-339ABC42DB6D}
