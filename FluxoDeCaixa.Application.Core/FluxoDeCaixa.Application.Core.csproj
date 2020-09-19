@@ -5,4 +5,9 @@
     <RootNamespace>FluxoDeCaixa</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FluxoDeCaixa.Application\FluxoDeCaixa.Application.csproj" />
+    <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
