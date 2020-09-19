@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>dotnet-FluxoDeCaixa.Workers-D73CA3E4-D27A-48E9-A9D6-9A199D2896FB</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <RootNamespace>FluxoDeCaixa</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
