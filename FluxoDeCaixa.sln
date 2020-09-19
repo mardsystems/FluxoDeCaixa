@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Api", "FluxoDeCaixa.Api\FluxoDeCaixa.Api.csproj", "{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Api", "FluxoDeCaixa.Api\FluxoDeCaixa.Api.csproj", "{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Apresentação", "1 - Apresentação", "{87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}"
 EndProject
@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Dependências Externas"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Documentação", "6 - Documentação", "{9D1818B7-BA49-4F78-A992-2207EF8276B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Workers", "FluxoDeCaixa.Workers\FluxoDeCaixa.Workers.csproj", "{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,12 +29,17 @@ Global
 		{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
+		{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7C1E9A1-3A37-48C1-AC8D-339ABC42DB6D}
