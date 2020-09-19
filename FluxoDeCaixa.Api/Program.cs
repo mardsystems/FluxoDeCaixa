@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace FluxoDeCaixa.Api
+namespace FluxoDeCaixa
 {
     public class Program
     {
