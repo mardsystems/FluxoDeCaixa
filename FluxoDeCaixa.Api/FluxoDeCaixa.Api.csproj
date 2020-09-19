@@ -17,5 +17,12 @@
     <ProjectReference Include="..\FluxoDeCaixa.Infrastructure\FluxoDeCaixa.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modulos\Consolidacao\" />
+    <Folder Include="Modulos\Consultas\" />
+    <Folder Include="Modulos\Politicas\" />
+    <Folder Include="Modulos\Lancamentos\" />
+  </ItemGroup>
+
 
 </Project>

@@ -9,4 +9,11 @@
     <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modulos\Consolidacao\" />
+    <Folder Include="Modulos\Consultas\" />
+    <Folder Include="Modulos\Lancamentos\" />
+    <Folder Include="Modulos\Politicas\" />
+  </ItemGroup>
+
 </Project>

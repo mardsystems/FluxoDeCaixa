@@ -15,4 +15,11 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modulos\Consolidacao\" />
+    <Folder Include="Modulos\Consultas\" />
+    <Folder Include="Modulos\Lancamentos\" />
+    <Folder Include="Modulos\Politicas\" />
+  </ItemGroup>
+
 </Project>
