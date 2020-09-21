@@ -18,7 +18,7 @@ namespace FluxoDeCaixa.Workers
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddHostedService<Worker>();
+                    
                 });
     }
 }
