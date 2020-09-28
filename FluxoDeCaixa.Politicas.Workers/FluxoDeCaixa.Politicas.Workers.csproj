@@ -1,13 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>139363ab-2b9a-457c-8481-53070ac63d28</UserSecretsId>
+    <UserSecretsId>dotnet-FluxoDeCaixa.Politicas.Workers-D59799EE-FEF7-4FD2-B93A-BDAC667C8F65</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <RootNamespace>FluxoDeCaixa</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.8" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
   </ItemGroup>
 
@@ -16,13 +17,4 @@
     <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Infrastructure\FluxoDeCaixa.Infrastructure.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Modulos\Consolidacao\" />
-    <Folder Include="Modulos\Consultas\" />
-    <Folder Include="Modulos\Politicas\" />
-    <Folder Include="Modulos\Lancamentos\" />
-  </ItemGroup>
-
-
 </Project>

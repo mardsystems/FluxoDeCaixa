@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Api", "FluxoDeCaixa.Api\FluxoDeCaixa.Api.csproj", "{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Apresentação", "1 - Apresentação", "{87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Aplicação", "2 - Aplicação", "{EC5C55BA-10E7-4C0F-BA8F-33FFC4D36D8C}"
@@ -16,20 +14,34 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Dependências Externas", "5 - Dependências Externas", "{9CF5732B-7049-46E6-9C32-FAFEFBAC5652}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Documentação", "6 - Documentação", "{9D1818B7-BA49-4F78-A992-2207EF8276B3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Workers", "FluxoDeCaixa.Workers\FluxoDeCaixa.Workers.csproj", "{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\Docs\FluxoDeCaixa.asta = Resources\Docs\FluxoDeCaixa.asta
+		Resources\Docs\FluxoDeCaixa_CasosDeUso.png = Resources\Docs\FluxoDeCaixa_CasosDeUso.png
+		Resources\Docs\FluxoDeCaixa_Implementacao.png = Resources\Docs\FluxoDeCaixa_Implementacao.png
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Application", "FluxoDeCaixa.Application\FluxoDeCaixa.Application.csproj", "{DEFE86C8-ACCC-4F37-8920-0391F36B163A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Application.Core", "FluxoDeCaixa.Application.Core\FluxoDeCaixa.Application.Core.csproj", "{4E0BCE51-9CDA-4DC7-A65C-53DFB9A06542}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Application.Core", "FluxoDeCaixa.Application.Core\FluxoDeCaixa.Application.Core.csproj", "{4E0BCE51-9CDA-4DC7-A65C-53DFB9A06542}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Domain", "FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj", "{2F7F8E0E-9263-4343-A152-8C4A81D5240C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Domain", "FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj", "{2F7F8E0E-9263-4343-A152-8C4A81D5240C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Infrastructure", "FluxoDeCaixa.Infrastructure\FluxoDeCaixa.Infrastructure.csproj", "{F62199EA-432D-415D-AD7C-F99129D918D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Infrastructure", "FluxoDeCaixa.Infrastructure\FluxoDeCaixa.Infrastructure.csproj", "{F62199EA-432D-415D-AD7C-F99129D918D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Domain.Tests", "FluxoDeCaixa.Domain.Tests\FluxoDeCaixa.Domain.Tests.csproj", "{3BFA8E97-239F-422F-B4C9-5AE0E2078CEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Domain.Tests", "FluxoDeCaixa.Domain.Tests\FluxoDeCaixa.Domain.Tests.csproj", "{3BFA8E97-239F-422F-B4C9-5AE0E2078CEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Api.Tests", "FluxoDeCaixa.Api.Tests\FluxoDeCaixa.Api.Tests.csproj", "{E353F604-5F97-4617-BC78-E95FDFDC3348}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.EntityFrameworkCore", "FluxoDeCaixa.EntityFrameworkCore\FluxoDeCaixa.EntityFrameworkCore.csproj", "{57FD4130-5979-4676-A288-9B0F2CDFF978}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Api", "FluxoDeCaixa.Lancamentos.Api\FluxoDeCaixa.Lancamentos.Api.csproj", "{21F0117C-F648-4D54-B673-57A1A715E5E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consultas.Api", "FluxoDeCaixa.Consultas.Api\FluxoDeCaixa.Consultas.Api.csproj", "{BB147791-3752-4978-83C9-0AEDD96E1497}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Workers", "FluxoDeCaixa.Lancamentos.Workers\FluxoDeCaixa.Lancamentos.Workers.csproj", "{A814A7BD-5583-4200-AFC0-7CDB2FB80411}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consolidacao.Workers", "FluxoDeCaixa.Consolidacao.Workers\FluxoDeCaixa.Consolidacao.Workers.csproj", "{8F03F4DB-0F5D-402C-A1BA-6E7C77B96480}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Politicas.Workers", "FluxoDeCaixa.Politicas.Workers\FluxoDeCaixa.Politicas.Workers.csproj", "{12D01B33-CE55-4BBB-844C-5F98844E7635}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +49,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DEFE86C8-ACCC-4F37-8920-0391F36B163A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DEFE86C8-ACCC-4F37-8920-0391F36B163A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEFE86C8-ACCC-4F37-8920-0391F36B163A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,23 +69,46 @@ Global
 		{3BFA8E97-239F-422F-B4C9-5AE0E2078CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BFA8E97-239F-422F-B4C9-5AE0E2078CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BFA8E97-239F-422F-B4C9-5AE0E2078CEB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E353F604-5F97-4617-BC78-E95FDFDC3348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E353F604-5F97-4617-BC78-E95FDFDC3348}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E353F604-5F97-4617-BC78-E95FDFDC3348}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E353F604-5F97-4617-BC78-E95FDFDC3348}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57FD4130-5979-4676-A288-9B0F2CDFF978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57FD4130-5979-4676-A288-9B0F2CDFF978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57FD4130-5979-4676-A288-9B0F2CDFF978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57FD4130-5979-4676-A288-9B0F2CDFF978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21F0117C-F648-4D54-B673-57A1A715E5E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21F0117C-F648-4D54-B673-57A1A715E5E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21F0117C-F648-4D54-B673-57A1A715E5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21F0117C-F648-4D54-B673-57A1A715E5E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB147791-3752-4978-83C9-0AEDD96E1497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB147791-3752-4978-83C9-0AEDD96E1497}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB147791-3752-4978-83C9-0AEDD96E1497}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB147791-3752-4978-83C9-0AEDD96E1497}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A814A7BD-5583-4200-AFC0-7CDB2FB80411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A814A7BD-5583-4200-AFC0-7CDB2FB80411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A814A7BD-5583-4200-AFC0-7CDB2FB80411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A814A7BD-5583-4200-AFC0-7CDB2FB80411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F03F4DB-0F5D-402C-A1BA-6E7C77B96480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F03F4DB-0F5D-402C-A1BA-6E7C77B96480}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F03F4DB-0F5D-402C-A1BA-6E7C77B96480}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F03F4DB-0F5D-402C-A1BA-6E7C77B96480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12D01B33-CE55-4BBB-844C-5F98844E7635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12D01B33-CE55-4BBB-844C-5F98844E7635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12D01B33-CE55-4BBB-844C-5F98844E7635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12D01B33-CE55-4BBB-844C-5F98844E7635}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E66B0F83-7D66-44C3-B8DC-F1E2C04A572C} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
-		{E57BBFEB-37F1-4CC4-B5AB-86C17C81CDC3} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
 		{DEFE86C8-ACCC-4F37-8920-0391F36B163A} = {EC5C55BA-10E7-4C0F-BA8F-33FFC4D36D8C}
 		{4E0BCE51-9CDA-4DC7-A65C-53DFB9A06542} = {EC5C55BA-10E7-4C0F-BA8F-33FFC4D36D8C}
 		{2F7F8E0E-9263-4343-A152-8C4A81D5240C} = {3D53E1CF-78D8-434C-88F6-21F0B3C9AC65}
 		{F62199EA-432D-415D-AD7C-F99129D918D7} = {6EF5194D-65E8-4937-B3B6-3493ED720CAB}
 		{3BFA8E97-239F-422F-B4C9-5AE0E2078CEB} = {3D53E1CF-78D8-434C-88F6-21F0B3C9AC65}
-		{E353F604-5F97-4617-BC78-E95FDFDC3348} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
+		{57FD4130-5979-4676-A288-9B0F2CDFF978} = {6EF5194D-65E8-4937-B3B6-3493ED720CAB}
+		{21F0117C-F648-4D54-B673-57A1A715E5E0} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
+		{BB147791-3752-4978-83C9-0AEDD96E1497} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
+		{A814A7BD-5583-4200-AFC0-7CDB2FB80411} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
+		{8F03F4DB-0F5D-402C-A1BA-6E7C77B96480} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
+		{12D01B33-CE55-4BBB-844C-5F98844E7635} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7C1E9A1-3A37-48C1-AC8D-339ABC42DB6D}

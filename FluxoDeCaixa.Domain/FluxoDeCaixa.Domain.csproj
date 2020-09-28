@@ -8,8 +8,11 @@
   <ItemGroup>
     <Folder Include="Modulos\Consolidacao\" />
     <Folder Include="Modulos\Consultas\" />
-    <Folder Include="Modulos\Lancamentos\" />
     <Folder Include="Modulos\Politicas\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="8.1.0" />
   </ItemGroup>
 
 </Project>

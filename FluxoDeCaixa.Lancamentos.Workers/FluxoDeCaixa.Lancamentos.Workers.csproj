@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>dotnet-FluxoDeCaixa.Workers-D73CA3E4-D27A-48E9-A9D6-9A199D2896FB</UserSecretsId>
+    <UserSecretsId>dotnet-FluxoDeCaixa.Lancamentos.Workers-0AA3EBB7-991A-4F0E-B945-72C5937F3F00</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <RootNamespace>FluxoDeCaixa</RootNamespace>
   </PropertyGroup>
@@ -15,15 +15,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\FluxoDeCaixa.Application\FluxoDeCaixa.Application.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Infrastructure\FluxoDeCaixa.Infrastructure.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modulos\Consolidacao\" />
-    <Folder Include="Modulos\Consultas\" />
-    <Folder Include="Modulos\Politicas\" />
-  </ItemGroup>
-
 </Project>

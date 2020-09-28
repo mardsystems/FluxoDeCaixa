@@ -25,7 +25,7 @@ namespace FluxoDeCaixa
 
                     services.AddHostedService<LancamentosService>();
 
-                    services.AddMediatR(typeof(ProcessadorDeLancamentosFinanceiros));
+                    services.AddMediatR(typeof(LancamentoFinanceiroProcessadoHandler));
                 });
     }
 }

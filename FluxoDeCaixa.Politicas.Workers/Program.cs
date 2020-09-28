@@ -2,9 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FluxoDeCaixa.Modulos;
-using FluxoDeCaixa.Modulos.Lancamentos;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -21,11 +18,7 @@ namespace FluxoDeCaixa
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddModulos();
-
-                    services.AddHostedService<LancamentosService>();
-
-                    services.AddMediatR(typeof(ProcessadorDeLancamentosFinanceiros));
+                    
                 });
     }
 }
