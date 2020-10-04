@@ -21,7 +21,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public ConsolidacaoService(IServiceScopeFactory scopeFactory)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = "rabbitmq" };
 
             connection = factory.CreateConnection();
 

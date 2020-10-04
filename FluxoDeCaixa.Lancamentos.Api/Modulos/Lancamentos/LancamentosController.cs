@@ -40,7 +40,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
             //
 
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = "rabbitmq" };
 
             using (var connection = factory.CreateConnection())
             {

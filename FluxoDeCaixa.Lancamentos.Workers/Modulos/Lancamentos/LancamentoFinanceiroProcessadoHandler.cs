@@ -13,7 +13,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
     {
         public Task Handle(EventoDeLancamentoFinanceiroProcessado evento, CancellationToken cancellationToken)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = "rabbitmq" };
 
             using (var connection = factory.CreateConnection())
             {

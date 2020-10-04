@@ -1,0 +1,47 @@
+version: '3.4'
+
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    image: rabbitmq:3-management
+
+  fluxodecaixa.lancamentos.api:
+    image: ${DOCKER_REGISTRY-}fluxodecaixalancamentosapi
+    build:
+      context: .
+      dockerfile: FluxoDeCaixa.Lancamentos.Api/Dockerfile
+    depends_on:
+      - rabbitmq
+
+  fluxodecaixa.lancamentos.workers:
+    image: ${DOCKER_REGISTRY-}fluxodecaixalancamentosworkers
+    build:
+      context: .
+      dockerfile: FluxoDeCaixa.Lancamentos.Workers/Dockerfile
+    depends_on:
+      - rabbitmq
+
+  fluxodecaixa.consolidacao.workers:
+    image: ${DOCKER_REGISTRY-}fluxodecaixaconsolidacaoworkers
+    build:
+      context: .
+      dockerfile: FluxoDeCaixa.Consolidacao.Workers/Dockerfile
+    depends_on:
+      - rabbitmq
+
+  fluxodecaixa.consultas.api:
+    image: ${DOCKER_REGISTRY-}fluxodecaixaconsultasapi
+    build:
+      context: .
+      dockerfile: FluxoDeCaixa.Consultas.Api/Dockerfile
+
+  fluxodecaixa.politicas.workers:
+    image: ${DOCKER_REGISTRY-}fluxodecaixapoliticasworkers
+    build:
+      context: .
+      dockerfile: FluxoDeCaixa.Politicas.Workers/Dockerfile
+    depends_on:
+      - rabbitmq

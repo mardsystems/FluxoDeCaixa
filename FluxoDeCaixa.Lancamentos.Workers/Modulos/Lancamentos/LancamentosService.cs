@@ -27,7 +27,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public LancamentosService(IServiceScopeFactory scopeFactory)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = "rabbitmq" };
 
             connection = factory.CreateConnection();
 
