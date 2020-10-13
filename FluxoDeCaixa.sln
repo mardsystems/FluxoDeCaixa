@@ -58,6 +58,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consultas.Appl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Extensions", "System.Extensions\System.Extensions.csproj", "{51210988-BA4C-4500-BF51-F576C2E4BEB3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Api.Tests", "FluxoDeCaixa.Lancamentos.Api.Tests\FluxoDeCaixa.Lancamentos.Api.Tests.csproj", "{C6F02B40-61A8-4E52-98E3-8FE6B0CA2C56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,10 @@ Global
 		{51210988-BA4C-4500-BF51-F576C2E4BEB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51210988-BA4C-4500-BF51-F576C2E4BEB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51210988-BA4C-4500-BF51-F576C2E4BEB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6F02B40-61A8-4E52-98E3-8FE6B0CA2C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6F02B40-61A8-4E52-98E3-8FE6B0CA2C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6F02B40-61A8-4E52-98E3-8FE6B0CA2C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6F02B40-61A8-4E52-98E3-8FE6B0CA2C56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,6 +156,7 @@ Global
 		{457034CE-33BE-42C0-B40B-AC8799E3321D} = {EC5C55BA-10E7-4C0F-BA8F-33FFC4D36D8C}
 		{BD1BFCA7-2C07-4619-B942-C00B6424E076} = {EC5C55BA-10E7-4C0F-BA8F-33FFC4D36D8C}
 		{51210988-BA4C-4500-BF51-F576C2E4BEB3} = {85A4D83C-E878-4494-AECB-72505EE30CD7}
+		{C6F02B40-61A8-4E52-98E3-8FE6B0CA2C56} = {87C0E72E-A27C-426F-BC2F-C9418D3FAB8C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7C1E9A1-3A37-48C1-AC8D-339ABC42DB6D}
