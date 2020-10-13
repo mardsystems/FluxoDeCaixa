@@ -36,3 +36,7 @@ Filas:
 ## Implantação
 
 ![Implantação](Resources/Docs/FluxoDeCaixa_Implantacao.png)
+
+### Postman Collection
+
+[Postman Collection](Resources/Postman/FluxoDeCaixa.postman_collection.json)
