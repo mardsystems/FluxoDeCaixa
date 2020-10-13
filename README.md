@@ -26,6 +26,13 @@
 
 ![Implementação](Resources/Docs/FluxoDeCaixa_Implementacao.png)
 
+### Message Broker
+
+Filas:
+- pagamentos
+- recebimentos
+- lancamentos-financeiros-processados
+
 ## Implantação
 
 ![Implantação](Resources/Docs/FluxoDeCaixa_Implantacao.png)
