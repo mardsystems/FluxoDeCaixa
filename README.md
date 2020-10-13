@@ -25,3 +25,7 @@
 ## Implementação
 
 ![Implementação](Resources/Docs/FluxoDeCaixa_Implementacao.png)
+
+## Implantação
+
+![Implantação](Resources/Docs/FluxoDeCaixa_Implantacao.png)

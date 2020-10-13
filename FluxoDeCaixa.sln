@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Documentação", "6 - D
 	ProjectSection(SolutionItems) = preProject
 		Resources\Docs\FluxoDeCaixa.asta = Resources\Docs\FluxoDeCaixa.asta
 		Resources\Docs\FluxoDeCaixa_CasosDeUso.png = Resources\Docs\FluxoDeCaixa_CasosDeUso.png
+		Resources\Docs\FluxoDeCaixa_Implantacao.png = Resources\Docs\FluxoDeCaixa_Implantacao.png
 		Resources\Docs\FluxoDeCaixa_Implementacao.png = Resources\Docs\FluxoDeCaixa_Implementacao.png
 		README.md = README.md
 	EndProjectSection
@@ -55,7 +56,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consultas.Application", "FluxoDeCaixa.Consultas.Application\FluxoDeCaixa.Consultas.Application.csproj", "{BD1BFCA7-2C07-4619-B942-C00B6424E076}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Extensions", "System.Extensions\System.Extensions.csproj", "{51210988-BA4C-4500-BF51-F576C2E4BEB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Extensions", "System.Extensions\System.Extensions.csproj", "{51210988-BA4C-4500-BF51-F576C2E4BEB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
