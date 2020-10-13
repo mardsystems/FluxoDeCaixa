@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
-using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +31,6 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
             queueBy.Add(TipoDeLancamento.Recebimento, "recebimentos");
         }
 
-        // POST api/<LancamentosController>
         [HttpPost()]
         public async Task<IActionResult> Post([FromBody] ComandoDeLancamentoFinanceiro comando)
         {

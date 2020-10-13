@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Consolidacao
 {
-    [Route("api/consultas/[controller]")]
+    [Route("api/consolidacao/[controller]")]
     [ApiController]
     public class FluxosController : ControllerBase
     {
@@ -25,9 +26,16 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
                 Ano = ano
             };
 
-            var fluxo = await mediator.Send(request);
+            try
+            {
+                var fluxo = await mediator.Send(request);
 
-            return Ok(fluxo);
+                return Ok(fluxo);
+            }
+            catch (EntityNotFoundException<FluxoDeCaixa> ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

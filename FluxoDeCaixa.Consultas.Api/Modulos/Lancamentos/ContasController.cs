@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
 {
-    [Route("api/[controller]")]
+    [Route("api/lancamentos/[controller]")]
     [ApiController]
     public class ContasController : ControllerBase
     {
