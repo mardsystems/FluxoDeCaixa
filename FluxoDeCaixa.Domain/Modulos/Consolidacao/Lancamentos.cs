@@ -8,15 +8,15 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
 {
     public class FluxoConsolidado
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public DateTime Data { get; set; }
 
-        //public ICollection<Lancamento> Entradas { get; set; }
+        public ICollection<Lancamento> Entradas { get; set; }
 
         public ICollection<Lancamento> Saidas { get; set; }
 
-        //public ICollection<Lancamento> Encargos { get; set; }
+        public ICollection<Lancamento> Encargos { get; set; }
 
         public decimal Total { get; set; }
 
@@ -24,7 +24,18 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
 
         public FluxoConsolidado()
         {
+            Entradas = new List<Lancamento>();
+
             Saidas = new List<Lancamento>();
+
+            Encargos = new List<Lancamento>();
+        }
+
+        public void AdicionaEntrada(Lancamento entrada)
+        {
+            Entradas.Add(entrada);
+
+            Total = Total + entrada.Valor;
         }
 
         public void AdicionaSaida(Lancamento saida)
@@ -38,8 +49,6 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
     public interface IRepositorioDeFluxos
     {
         Task<FluxoConsolidado> ObtemFluxo(DateTime data);
-
-        Task AdicionaEntrada(Lancamento lancamento);
 
         Task Adiciona(FluxoConsolidado fluxo);
 

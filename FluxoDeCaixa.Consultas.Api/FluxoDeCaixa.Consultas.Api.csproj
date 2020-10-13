@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FluxoDeCaixa.Application\FluxoDeCaixa.Application.csproj" />
+    <ProjectReference Include="..\FluxoDeCaixa.Consultas.Application\FluxoDeCaixa.Consultas.Application.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Infrastructure\FluxoDeCaixa.Infrastructure.csproj" />
   </ItemGroup>

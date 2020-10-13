@@ -1,6 +1,19 @@
 version: '3.4'
 
 services:
+  message_broker:
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  banco_analitico:
+    ports:
+      - "27017:27017"
+
+  banco_transacional:
+    ports:
+      - "1433:1433"
+
   fluxodecaixa.lancamentos.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

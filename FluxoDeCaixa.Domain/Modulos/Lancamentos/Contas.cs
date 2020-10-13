@@ -4,7 +4,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 {
     public class Conta
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public TipoDeConta Tipo { get; set; }
 
@@ -28,5 +28,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
     public interface IRepositorioDeContas
     {
         Task<Conta> ObtemConta(string numeroDaConta, string numeroDoBanco, TipoDeConta tipoDeConta, string numeroDoCpfOuCnpj);
+        
+        Task Atualiza(Conta conta);
     }
 }

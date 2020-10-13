@@ -15,11 +15,15 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
     {
         private readonly ILogger<LancamentosController> logger;
 
+        private readonly IGeracaoDeProtocolos geracaoDeProtocolos;
+
         private readonly Dictionary<TipoDeLancamento, string> queueBy;
 
-        public LancamentosController(ILogger<LancamentosController> logger)
+        public LancamentosController(ILogger<LancamentosController> logger, IGeracaoDeProtocolos geracaoDeProtocolos)
         {
             this.logger = logger;
+
+            this.geracaoDeProtocolos = geracaoDeProtocolos;
 
             queueBy = new Dictionary<TipoDeLancamento, string>();
 
@@ -32,15 +36,15 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         [HttpPost()]
         public async Task<IActionResult> Post([FromBody] ComandoDeLancamentoFinanceiro comando)
         {
-            var protocolo = new Protocolo();
+            var protocolo = await geracaoDeProtocolos.GeraProtocolo();
 
-            logger.LogDebug($"Protocolo: {protocolo.Id}");
+            logger.LogDebug($"Protocolo: {protocolo}");
 
             comando.AnexaProtocolo(protocolo);
 
             //
 
-            var factory = new ConnectionFactory() { HostName = "rabbitmq" };
+            var factory = new ConnectionFactory() { HostName = "message_broker" };
 
             using (var connection = factory.CreateConnection())
             {

@@ -15,9 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FluxoDeCaixa.Application\FluxoDeCaixa.Application.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Infrastructure\FluxoDeCaixa.Infrastructure.csproj" />
+    <ProjectReference Include="..\FluxoDeCaixa.Lancamentos.Application\FluxoDeCaixa.Lancamentos.Application.csproj" />
   </ItemGroup>
 
 

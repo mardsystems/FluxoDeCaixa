@@ -21,7 +21,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public ConsolidacaoService(IServiceScopeFactory scopeFactory)
         {
-            var factory = new ConnectionFactory() { HostName = "rabbitmq" };
+            var factory = new ConnectionFactory() { HostName = "message_broker" };
 
             connection = factory.CreateConnection();
 
@@ -50,16 +50,18 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
                 var evento = JsonConvert.DeserializeObject<EventoDeLancamentoFinanceiroProcessado>(content);
 
-                Console.WriteLine(" [x] Received {0}", content);
+                Console.WriteLine(" [x] EventoDeLancamentoFinanceiroProcessado Received {0}", content);
 
                 var mediator = consumerScope.ServiceProvider.GetRequiredService<IMediator>();
 
                 await mediator.Publish(evento);
+
+                channel.BasicAck(args.DeliveryTag, false);
             };
 
             channel.BasicConsume(
                 queue: "lancamentos-financeiros-processados",
-                autoAck: true,
+                autoAck: false,
                 consumer: consumer
             );
 

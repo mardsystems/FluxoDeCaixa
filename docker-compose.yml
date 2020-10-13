@@ -1,12 +1,39 @@
 version: '3.4'
 
+networks:
+  rede_olap:
+  rede_oltp:
+  rede_message_broker:
+  rede_externa:
+
 services:
-  rabbitmq:
-    container_name: rabbitmq
-    ports:
-      - 5672:5672
-      - 15672:15672
+  message_broker:
+    container_name: message_broker
+    restart: always
     image: rabbitmq:3-management
+    networks:
+      - rede_message_broker
+
+  banco_analitico:
+    container_name: banco_analitico
+    restart: always
+    image: mongo:3.6
+    volumes:
+      - ./data/banco_analitico:/data/db
+    networks:
+      - rede_olap
+
+  banco_transacional:
+    container_name: banco_transacional
+    restart: always
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    hostname: banco_transacional
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "BigPassw0rd"
+      MSSQL_AGENT_ENABLED: "true"
+    networks:
+      - rede_oltp
 
   fluxodecaixa.lancamentos.api:
     image: ${DOCKER_REGISTRY-}fluxodecaixalancamentosapi
@@ -14,7 +41,10 @@ services:
       context: .
       dockerfile: FluxoDeCaixa.Lancamentos.Api/Dockerfile
     depends_on:
-      - rabbitmq
+      - message_broker
+    networks:
+      - rede_externa
+      - rede_message_broker
 
   fluxodecaixa.lancamentos.workers:
     image: ${DOCKER_REGISTRY-}fluxodecaixalancamentosworkers
@@ -22,7 +52,11 @@ services:
       context: .
       dockerfile: FluxoDeCaixa.Lancamentos.Workers/Dockerfile
     depends_on:
-      - rabbitmq
+      - message_broker
+      - banco_transacional
+    networks:
+      - rede_message_broker
+      - rede_oltp
 
   fluxodecaixa.consolidacao.workers:
     image: ${DOCKER_REGISTRY-}fluxodecaixaconsolidacaoworkers
@@ -30,13 +64,22 @@ services:
       context: .
       dockerfile: FluxoDeCaixa.Consolidacao.Workers/Dockerfile
     depends_on:
-      - rabbitmq
+      - message_broker
+      - banco_analitico
+    networks:
+      - rede_message_broker
+      - rede_olap
 
   fluxodecaixa.consultas.api:
     image: ${DOCKER_REGISTRY-}fluxodecaixaconsultasapi
     build:
       context: .
       dockerfile: FluxoDeCaixa.Consultas.Api/Dockerfile
+    depends_on:
+      - banco_analitico
+    networks:
+      - rede_externa
+      - rede_olap
 
   fluxodecaixa.politicas.workers:
     image: ${DOCKER_REGISTRY-}fluxodecaixapoliticasworkers
@@ -44,4 +87,8 @@ services:
       context: .
       dockerfile: FluxoDeCaixa.Politicas.Workers/Dockerfile
     depends_on:
-      - rabbitmq
+      - message_broker
+      - banco_transacional
+    networks:
+      - rede_message_broker
+      - rede_oltp

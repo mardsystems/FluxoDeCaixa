@@ -6,9 +6,9 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 {
     public class Lancamento
     {
-        public int Id { get; set; }
-
         public Protocolo Protocolo { get; set; }
+
+        public string ProtocoloId { get; set; }
 
         public Conta Conta { get; set; }
 
@@ -24,6 +24,8 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         {
             Protocolo = protocolo;
 
+            ProtocoloId = protocolo.Id;
+
             Conta = conta;
 
             Data = data;
@@ -35,7 +37,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
             Tipo = tipo;
         }
 
-        private Lancamento()
+        public Lancamento()
         {
 
         }

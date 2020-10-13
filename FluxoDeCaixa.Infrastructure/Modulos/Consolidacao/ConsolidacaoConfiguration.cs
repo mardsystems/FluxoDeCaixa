@@ -7,9 +7,14 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
     {
         public static void AddConsolidacao(this IServiceCollection services)
         {
-            services.AddTransient<IRepositorioDeFluxos, ConsolidacaoDbService>();
+            services.AddTransient<IRepositorioDeFluxos, ConsolidacaoMongoDBService>();
 
             services.AddMediatR(typeof(ServicoDeConsolidacaoDeFinancas));
+        }
+
+        public static void AddConsolidacaoParaConsultas(this IServiceCollection services)
+        {
+            services.AddMediatR(typeof(ConsolidacaoMongoDBService));
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using FluxoDeCaixa.Modulos;
+using FluxoDeCaixa.Modulos.Lancamentos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +30,7 @@ namespace FluxoDeCaixa
         {
             services.AddControllers();
 
-            services.AddModulos();
+            services.AddModulosParaProtocolos();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -13,21 +13,17 @@ namespace FluxoDeCaixa
 
         public DbSet<Lancamento> Lancamentos { get; set; }
 
-        public DbSet<FluxoConsolidado> Fluxos { get; set; }
-
-        public DbSet<Protocolo> Protocolos { get; set; }
-
         public FluxoDeCaixaDbContext(DbContextOptions<FluxoDeCaixaDbContext> options)
             : base(options)
         {
-            //Database.EnsureDeleted();
 
-            //Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Lancamento>(builder => builder.HasKey(p => p.ProtocoloId));
 
             modelBuilder.Entity<Conta>()
                 .HasIndex(conta => new { conta.Numero, conta.Banco, conta.Tipo, conta.Documento })
@@ -35,7 +31,7 @@ namespace FluxoDeCaixa
 
             modelBuilder.Entity<Conta>()
                 .HasData(
-                    new Conta { Id = 1, Numero = "123", Banco = "001", Tipo = TipoDeConta.Corrente, Documento = "096", Email = "mardsystems@gmail.com", Saldo = 0 }
+                    new Conta { Id = "1", Numero = "123", Banco = "001", Tipo = TipoDeConta.Corrente, Documento = "096", Email = "mardsystems@gmail.com", Saldo = 0 }
                 );
         }
     }

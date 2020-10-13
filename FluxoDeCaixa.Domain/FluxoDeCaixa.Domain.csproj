@@ -6,13 +6,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Modulos\Consultas\**" />
+    <EmbeddedResource Remove="Modulos\Consultas\**" />
+    <None Remove="Modulos\Consultas\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Modulos\Consolidacao\" />
-    <Folder Include="Modulos\Consultas\" />
     <Folder Include="Modulos\Politicas\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="8.1.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\System.Extensions\System.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FluxoDeCaixa.Modulos;
 using FluxoDeCaixa.Modulos.Lancamentos;
 using MediatR;
@@ -21,7 +17,9 @@ namespace FluxoDeCaixa
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddModulos();
+                    services.AddUnitOfWork();
+
+                    services.AddModulosParaLancamentos(hostContext.Configuration);
 
                     services.AddHostedService<LancamentosService>();
 

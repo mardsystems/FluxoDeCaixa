@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
@@ -27,7 +26,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public LancamentosService(IServiceScopeFactory scopeFactory)
         {
-            var factory = new ConnectionFactory() { HostName = "rabbitmq" };
+            var factory = new ConnectionFactory() { HostName = "message_broker" };
 
             connection = factory.CreateConnection();
 
@@ -58,21 +57,17 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
             );
 
             consumerScope = scopeFactory.CreateScope();
-
-            //var context = consumerScope.ServiceProvider.GetRequiredService<FluxoDeCaixaDbContext>();
-
-            //myDb.Database.EnsureCreated();
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             var pagamentosConsumer = new EventingBasicConsumer(pagamentosChannel);
-
+            
             pagamentosConsumer.Received += Consumer_Received;
 
             pagamentosChannel.BasicConsume(
                 queue: queueBy[TipoDeLancamento.Pagamento],
-                autoAck: true,
+                autoAck: false,
                 consumer: pagamentosConsumer
             );
 
@@ -82,7 +77,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
             recebimentosChannel.BasicConsume(
                 queue: queueBy[TipoDeLancamento.Recebimento],
-                autoAck: true,
+                autoAck: false,
                 consumer: recebimentosConsumer
             );
 
@@ -97,11 +92,20 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
             var comando = JsonConvert.DeserializeObject<ComandoDeLancamentoFinanceiro>(content);
 
-            Console.WriteLine(" [x] Received {0}", content);
+            Console.WriteLine(" [x] ComandoDeLancamentoFinanceiro Received {0}", content);
 
             var mediator = consumerScope.ServiceProvider.GetRequiredService<IMediator>();
 
             await mediator.Send(comando);
+
+            if (comando.TipoDeLancamento == TipoDeLancamento.Pagamento)
+            {
+                pagamentosChannel.BasicAck(args.DeliveryTag, false);
+            }
+            else
+            {
+                recebimentosChannel.BasicAck(args.DeliveryTag, false);
+            }
         }
 
         public override void Dispose()

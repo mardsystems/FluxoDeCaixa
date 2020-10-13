@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
@@ -7,17 +8,19 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
     [ApiController]
     public class ContasController : ControllerBase
     {
-        private readonly IConsultaDeContas consultaDeContas;
+        private readonly IMediator mediator;
 
-        public ContasController(IConsultaDeContas consultaDeContas)
+        public ContasController(IMediator mediator)
         {
-            this.consultaDeContas = consultaDeContas;
+            this.mediator = mediator;
         }
 
         [HttpGet()]
         public async Task<IActionResult> Get()
         {
-            var contas = await consultaDeContas.ConsultaContas();
+            var request = new SolicitacaoDeConsultaDeContas();
+
+            var contas = await mediator.Send(request);
 
             return Ok(contas);
         }

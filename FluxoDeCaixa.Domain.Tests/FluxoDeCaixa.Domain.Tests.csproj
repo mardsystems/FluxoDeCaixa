@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Modulos\Consultas\**" />
+    <EmbeddedResource Remove="Modulos\Consultas\**" />
+    <None Remove="Modulos\Consultas\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
@@ -17,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Modulos\Consolidacao\" />
-    <Folder Include="Modulos\Consultas\" />
     <Folder Include="Modulos\Lancamentos\" />
     <Folder Include="Modulos\Politicas\" />
   </ItemGroup>
