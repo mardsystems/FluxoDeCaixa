@@ -39,40 +39,30 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
                 if (comando.TipoDeLancamento == TipoDeLancamento.Pagamento)
                 {
-                    if (conta.Saldo - comando.Valor < -20000)
+                    var pagamento = new Pagamento(
+                        comando.Protocolo,
+                        comando.Valor,
+                        comando.Descricao,
+                        new DateTime(comando.data_de_lancamento.Year, comando.data_de_lancamento.Month, comando.data_de_lancamento.Day)
+                    );
+
+                    //
+
+                    var lancamento = conta.LancaPagamento(pagamento);
+
+                    //
+
+                    await repositorioDeContas.Atualiza(conta);
+
+                    await repositorioDeLancamentos.Adiciona(lancamento);
+
+                    var evento = new EventoDeLancamentoFinanceiroProcessado
                     {
-                        throw new ApplicationException("A conta não pode ficar mais de R$ 20.000,00 negativos");
-                    }
+                        Lancamento = lancamento
+                    };
+
+                    await mediator.Publish(evento);
                 }
-
-                var lancamento = new Lancamento(
-                    comando.Protocolo,
-                    conta,
-                    new DateTime(comando.data_de_lancamento.Year, comando.data_de_lancamento.Month, comando.data_de_lancamento.Day),
-                    comando.Descricao,
-                    comando.Valor,
-                    TipoDeLancamento.Pagamento
-                );
-
-                if (lancamento.Tipo == TipoDeLancamento.Pagamento)
-                {
-                    conta.Saldo = conta.Saldo + lancamento.Valor;
-                }
-                else
-                {
-                    conta.Saldo = conta.Saldo - lancamento.Valor;
-                }
-
-                await repositorioDeContas.Atualiza(conta);
-
-                await repositorioDeLancamentos.Adiciona(lancamento);
-
-                var evento = new EventoDeLancamentoFinanceiroProcessado
-                {
-                    Lancamento = lancamento
-                };
-
-                await mediator.Publish(evento);
 
                 await unitOfWork.Commit();
 

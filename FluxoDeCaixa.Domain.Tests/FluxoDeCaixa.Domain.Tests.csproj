@@ -23,8 +23,12 @@
 
   <ItemGroup>
     <Folder Include="Modulos\Consolidacao\" />
-    <Folder Include="Modulos\Lancamentos\" />
     <Folder Include="Modulos\Politicas\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
+    <ProjectReference Include="..\System.Extensions\System.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

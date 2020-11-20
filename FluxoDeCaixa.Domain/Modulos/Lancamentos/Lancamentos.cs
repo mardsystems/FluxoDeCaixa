@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
 {
+    /// <summary>
+    /// Representa um lançamento de um pagamento ou um recebimento numa conta.
+    /// </summary>
     public class Lancamento
     {
         public Protocolo Protocolo { get; set; }
@@ -22,7 +25,8 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public Lancamento(Protocolo protocolo, Conta conta, DateTime data, string descricao, decimal valor, TipoDeLancamento tipo)
         {
-            Protocolo = protocolo;
+            Protocolo = protocolo
+                ?? throw new ArgumentNullException(nameof(protocolo));
 
             ProtocoloId = protocolo.Id;
 

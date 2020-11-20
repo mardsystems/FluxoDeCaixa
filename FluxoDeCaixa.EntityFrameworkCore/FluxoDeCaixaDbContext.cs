@@ -1,9 +1,5 @@
-﻿using FluxoDeCaixa.Modulos.Consolidacao;
-using FluxoDeCaixa.Modulos.Lancamentos;
+﻿using FluxoDeCaixa.Modulos.Lancamentos;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FluxoDeCaixa
 {
@@ -23,11 +19,17 @@ namespace FluxoDeCaixa
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Lancamento>(builder => builder.HasKey(p => p.ProtocoloId));
+            modelBuilder.Entity<Lancamento>()
+                .HasKey(l => l.ProtocoloId);
+
+            modelBuilder.Entity<Lancamento>()
+                .Property(l => l.ProtocoloId).HasMaxLength(24);
+
+            modelBuilder.Entity<Lancamento>()
+                .OwnsOne(l => l.Protocolo, b => b.Property(p => p.Id).HasMaxLength(24).HasColumnName("ProtocoloId").IsRequired());
 
             modelBuilder.Entity<Conta>()
-                .HasIndex(conta => new { conta.Numero, conta.Banco, conta.Tipo, conta.Documento })
-                .IsUnique();
+                .HasIndex(c => new { c.Numero, c.Banco, c.Tipo, c.Documento }).IsUnique();
 
             modelBuilder.Entity<Conta>()
                 .HasData(
