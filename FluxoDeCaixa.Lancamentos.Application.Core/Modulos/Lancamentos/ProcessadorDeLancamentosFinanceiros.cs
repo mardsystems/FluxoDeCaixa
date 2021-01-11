@@ -32,7 +32,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         public async Task<Unit> Handle(ComandoDeLancamentoFinanceiro comando, CancellationToken cancellationToken)
         {
             await unitOfWork.BeginTransaction();
-
+            
             try
             {
                 var conta = await repositorioDeContas.ObtemConta(comando.ContaDestino, comando.BancoDestino, comando.TipoDeConta, comando.CpfCnpjDestino);

@@ -1,5 +1,6 @@
 ﻿using FluxoDeCaixa.Modulos.Consolidacao;
 using FluxoDeCaixa.Modulos.Lancamentos;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +20,7 @@ namespace FluxoDeCaixa.Modulos
         {
             services.AddUnitOfWork();
 
-            services.AddDbContext(configuration);
+            //services.AddDbContext(configuration);
 
             //
 
@@ -64,6 +65,40 @@ namespace FluxoDeCaixa.Modulos
                 //options.UseSqlite(connectionString);
 
                 //options.UseInternalServiceProvider(serviceProvider);
+            });
+
+            var contextServiceProvider = services.BuildServiceProvider();
+
+            using (var scope = contextServiceProvider.CreateScope())
+            {
+                var scopedProvider = scope.ServiceProvider;
+
+                //var logger = scopedProvider.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
+
+                using (var context = scopedProvider.GetRequiredService<FluxoDeCaixaDbContext>())
+                {
+                    Thread.Sleep(25000);
+
+                    context.Database.EnsureCreated();
+                }
+            }
+        }
+
+        public static void AddDbContextInMemory(this IServiceCollection services)
+        {
+            var connectionString = @"DataSource=myshared.db";
+
+            //var keepAliveConnection = new SqliteConnection(connectionString);
+
+            //keepAliveConnection.Open();
+
+            //var serviceProvider = new ServiceCollection()
+            //    .AddEntityFrameworkSqlite()
+            //    .BuildServiceProvider();
+
+            services.AddDbContext<FluxoDeCaixaDbContext>(options =>
+            {
+                options.UseSqlite(connectionString);
             });
 
             var contextServiceProvider = services.BuildServiceProvider();

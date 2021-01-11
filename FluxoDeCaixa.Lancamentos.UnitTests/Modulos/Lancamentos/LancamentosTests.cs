@@ -28,9 +28,9 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
             [Fact]
             public void O_Saldo_Da_Conta_Deve_Ser_Decrescido_Do_Valor_Do_Pagamento()
             {
-                var saldoHoje = conta.Saldo; // ObtemSaldoNaData(DateTime.Today);
+                var saldoHoje = conta.ObtemSaldoNaData(DateTime.Today);
 
-                var saldoDaContaEsperadoHoje = saldoHoje - pagamento.Valor;
+                var saldoDaContaEsperadoHoje = saldoHoje.Valor - pagamento.Valor;
 
                 //
 
@@ -38,7 +38,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
                 //
 
-                Assert.Equal(saldoDaContaEsperadoHoje, conta.Saldo);
+                Assert.Equal(saldoDaContaEsperadoHoje, saldoHoje.Valor);
             }
 
             [Fact]
