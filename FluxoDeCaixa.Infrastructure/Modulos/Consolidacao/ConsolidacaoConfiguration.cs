@@ -5,11 +5,13 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
 {
     public static class ConsolidacaoConfiguration
     {
-        public static void AddConsolidacao(this IServiceCollection services)
+        public static void AddConsolidacaoDeLancamentos(this IServiceCollection services)
         {
             services.AddTransient<IRepositorioDeFluxos, ConsolidacaoMongoDBService>();
 
             services.AddMediatR(typeof(ServicoDeConsolidacaoDeFinancas));
+            
+            services.AddMediatR(typeof(ConsolidacaoRabbitMQService));
         }
 
         public static void AddConsolidacaoParaConsultas(this IServiceCollection services)

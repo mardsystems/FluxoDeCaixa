@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FluxoDeCaixa.Consolidacao.Application\FluxoDeCaixa.Consolidacao.Application.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
+    <ProjectReference Include="..\System.Extensions\System.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,82 +1,22 @@
 ﻿using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-using System;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FluxoDeCaixa.Modulos.Lancamentos
+namespace FluxoDeCaixa.Modulos.Consolidacao
 {
     public class ConsolidacaoService : BackgroundService
     {
-        private readonly IConnection connection;
+        private readonly IMediator mediator;
 
-        private readonly IModel channel;
-
-        private readonly IServiceScope consumerScope;
-
-        public ConsolidacaoService(IServiceScopeFactory scopeFactory)
+        public ConsolidacaoService(IMediator mediator)
         {
-            var factory = new ConnectionFactory() { HostName = "message_broker" };
-
-            connection = factory.CreateConnection();
-
-            channel = connection.CreateModel();
-
-            channel.QueueDeclare(
-                queue: "lancamentos-financeiros-processados",
-                durable: false,
-                exclusive: false,
-                autoDelete: false,
-                arguments: null
-            );
-
-            consumerScope = scopeFactory.CreateScope();
+            this.mediator = mediator;
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var consumer = new EventingBasicConsumer(channel);
-
-            consumer.Received += async (sender, args) =>
-            {
-                var body = args.Body.ToArray();
-
-                var content = Encoding.UTF8.GetString(body);
-
-                var evento = JsonConvert.DeserializeObject<EventoDeLancamentoFinanceiroProcessado>(content);
-
-                Console.WriteLine(" [x] EventoDeLancamentoFinanceiroProcessado Received {0}", content);
-
-                var mediator = consumerScope.ServiceProvider.GetRequiredService<IMediator>();
-
-                await mediator.Publish(evento);
-
-                channel.BasicAck(args.DeliveryTag, false);
-            };
-
-            channel.BasicConsume(
-                queue: "lancamentos-financeiros-processados",
-                autoAck: false,
-                consumer: consumer
-            );
-
-            return Task.CompletedTask;
-        }
-
-        public override void Dispose()
-        {
-            channel.Dispose();
-
-            connection.Dispose();
-
-            consumerScope.Dispose();
-
-            base.Dispose();
+            await mediator.Send(new ComandoParaIniciarConsolidacao());
         }
     }
 }

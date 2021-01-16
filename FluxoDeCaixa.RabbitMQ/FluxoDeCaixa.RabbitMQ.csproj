@@ -6,12 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Modulos\Politicas\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +16,7 @@
     <ProjectReference Include="..\FluxoDeCaixa.Consultas.Application\FluxoDeCaixa.Consultas.Application.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Lancamentos.Application\FluxoDeCaixa.Lancamentos.Application.csproj" />
+    <ProjectReference Include="..\System.Extensions\System.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

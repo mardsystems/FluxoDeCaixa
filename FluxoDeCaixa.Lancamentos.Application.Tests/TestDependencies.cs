@@ -1,7 +1,4 @@
-﻿using FluxoDeCaixa.Modulos;
-using FluxoDeCaixa.Modulos.Lancamentos;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SolidToken.SpecFlow.DependencyInjection;
 
 namespace FluxoDeCaixa
@@ -13,13 +10,7 @@ namespace FluxoDeCaixa
         {
             var services = new ServiceCollection();
 
-            services.AddUnitOfWork();
-
-            services.AddLancamentos();
-
-            services.AddDbContextInMemory();
-
-            services.AddMediatR(typeof(ProcessadorDeLancamentosFinanceiros));
+            services.AddInfraLancamentosTests();
 
             return services;
         }

@@ -1,5 +1,4 @@
-using FluxoDeCaixa.Modulos;
-using FluxoDeCaixa.Modulos.Lancamentos;
+using FluxoDeCaixa.Modulos.Consolidacao;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -16,7 +15,7 @@ namespace FluxoDeCaixa
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddModulosParaConsolidacao();
+                    services.AddInfraConsolidacaoWorkers();
 
                     services.AddHostedService<ConsolidacaoService>();
                 });

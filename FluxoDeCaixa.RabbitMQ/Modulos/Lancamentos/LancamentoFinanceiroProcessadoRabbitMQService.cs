@@ -2,14 +2,13 @@
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
 {
-    public class LancamentoFinanceiroProcessadoHandler : INotificationHandler<EventoDeLancamentoFinanceiroProcessado>
+    public class LancamentoFinanceiroProcessadoRabbitMQService : INotificationHandler<EventoDeLancamentoFinanceiroProcessado>
     {
         public Task Handle(EventoDeLancamentoFinanceiroProcessado evento, CancellationToken cancellationToken)
         {
@@ -37,6 +36,8 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
                         basicProperties: null,
                         body: body
                     );
+
+                    Console.WriteLine(" [x] EventoDeLancamentoFinanceiroProcessado Published {0}", content);
                 }
             }
 

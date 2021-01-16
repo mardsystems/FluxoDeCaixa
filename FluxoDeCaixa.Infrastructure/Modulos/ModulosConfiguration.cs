@@ -1,121 +1,64 @@
 ﻿using FluxoDeCaixa.Modulos.Consolidacao;
 using FluxoDeCaixa.Modulos.Lancamentos;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Threading;
-using System.Transactions;
 
 namespace FluxoDeCaixa.Modulos
 {
     public static class ModulosConfiguration
     {
-        public static void AddModulosParaProtocolos(this IServiceCollection services)
+        #region Lancamentos
+
+        public static void AddModuloLancamentosParaProtocolo(this IServiceCollection services)
         {
             services.AddProtocolos();
         }
 
-        public static void AddModulosParaLancamentos(this IServiceCollection services, IConfiguration configuration)
+        public static void AddModuloLancamentos(this IServiceCollection services)
         {
-            services.AddUnitOfWork();
-
-            //services.AddDbContext(configuration);
-
-            //
+            services.AddPagamentos();
 
             services.AddLancamentos();
+
+            services.AddContas();
         }
 
-        public static void AddModulosParaConsolidacao(this IServiceCollection services)
+        public static void AddModuloLancamentosParaConsultas(this IServiceCollection services)
         {
-            services.AddConsolidacao();
+            services.AddContasParaConsultas();
         }
 
-        public static void AddModulosParaConsultas(this IServiceCollection services)
-        {
-            services.AddLancamentosParaConsultas();
+        #endregion
 
+        #region Consolidacao
+
+        public static void AddModuloConsolidacao(this IServiceCollection services)
+        {
+            services.AddConsolidacaoDeLancamentos();
+        }
+
+        public static void AddModuloConsolidacaoParaConsultas(this IServiceCollection services)
+        {
             services.AddConsolidacaoParaConsultas();
         }
 
-        public static void AddUnitOfWork(this IServiceCollection services)
+        #endregion
+
+        #region Consultas
+
+        public static void AddModuloConsultas(this IServiceCollection services)
         {
-            services.AddTransient<IUnitOfWork, TransactionScopeManager>();
+
         }
 
-        public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
+        #endregion
+
+        #region Politicas
+
+        public static void AddModuloPoliticas(this IServiceCollection services)
         {
-            var sqlConnection = configuration.GetConnectionString("SqlConnection");
 
-            //var connectionString = @"DataSource=myshared.db";
-
-            //var keepAliveConnection = new SqliteConnection(connectionString);
-
-            //keepAliveConnection.Open();
-
-            //var serviceProvider = new ServiceCollection()
-            //    .AddEntityFrameworkSqlite()
-            //    .BuildServiceProvider();
-
-            services.AddDbContext<FluxoDeCaixaDbContext>(options =>
-            {
-                options.UseSqlServer(sqlConnection);
-
-                //options.UseSqlite(connectionString);
-
-                //options.UseInternalServiceProvider(serviceProvider);
-            });
-
-            var contextServiceProvider = services.BuildServiceProvider();
-
-            using (var scope = contextServiceProvider.CreateScope())
-            {
-                var scopedProvider = scope.ServiceProvider;
-
-                //var logger = scopedProvider.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
-
-                using (var context = scopedProvider.GetRequiredService<FluxoDeCaixaDbContext>())
-                {
-                    Thread.Sleep(25000);
-
-                    context.Database.EnsureCreated();
-                }
-            }
         }
 
-        public static void AddDbContextInMemory(this IServiceCollection services)
-        {
-            var connectionString = @"DataSource=myshared.db";
-
-            //var keepAliveConnection = new SqliteConnection(connectionString);
-
-            //keepAliveConnection.Open();
-
-            //var serviceProvider = new ServiceCollection()
-            //    .AddEntityFrameworkSqlite()
-            //    .BuildServiceProvider();
-
-            services.AddDbContext<FluxoDeCaixaDbContext>(options =>
-            {
-                options.UseSqlite(connectionString);
-            });
-
-            var contextServiceProvider = services.BuildServiceProvider();
-
-            using (var scope = contextServiceProvider.CreateScope())
-            {
-                var scopedProvider = scope.ServiceProvider;
-
-                //var logger = scopedProvider.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
-
-                using (var context = scopedProvider.GetRequiredService<FluxoDeCaixaDbContext>())
-                {
-                    Thread.Sleep(25000);
-
-                    context.Database.EnsureCreated();
-                }
-            }
-        }
+        #endregion
     }
 }

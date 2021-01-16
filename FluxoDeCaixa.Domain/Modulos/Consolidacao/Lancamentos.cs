@@ -1,6 +1,4 @@
-﻿using FluxoDeCaixa.Modulos.Lancamentos;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -31,18 +29,54 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
             Encargos = new List<Lancamento>();
         }
 
-        public void AdicionaEntrada(Lancamento entrada)
+        public void AdicionaEntrada(Lancamentos.Lancamento lancamento)
         {
+            var entrada = new Lancamento(lancamento.Data, lancamento.Descricao, lancamento.Valor);
+
             Entradas.Add(entrada);
 
             Total = Total + entrada.Valor;
         }
 
-        public void AdicionaSaida(Lancamento saida)
+        public void AdicionaSaida(Lancamentos.Lancamento lancamento)
         {
+            var saida = new Lancamento(lancamento.Data, lancamento.Descricao, lancamento.Valor);
+
             Saidas.Add(saida);
 
             Total = Total - saida.Valor;
+        }
+    }
+
+    public class Lancamento : ValueObject
+    {
+        public DateTime Data { get; set; }
+
+        public string Descricao { get; set; }
+
+        public decimal Valor { get; set; }
+
+        public Lancamento(DateTime data, string descricao, decimal valor)
+        {
+            Data = data;
+
+            Descricao = descricao;
+
+            Valor = valor;
+        }
+
+        protected override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Data;
+
+            yield return Descricao;
+
+            yield return Valor;
+        }
+
+        public Lancamento()
+        {
+
         }
     }
 

@@ -7,12 +7,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FluxoDeCaixa.Consolidacao.Application.Core\FluxoDeCaixa.Consolidacao.Application.Core.csproj" />
+    <ProjectReference Include="..\FluxoDeCaixa.Consolidacao.Application\FluxoDeCaixa.Consolidacao.Application.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Consultas.Application\FluxoDeCaixa.Consultas.Application.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.EntityFrameworkCore\FluxoDeCaixa.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Lancamentos.Application.Core\FluxoDeCaixa.Lancamentos.Application.Core.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.Lancamentos.Application\FluxoDeCaixa.Lancamentos.Application.csproj" />
     <ProjectReference Include="..\FluxoDeCaixa.MongoDB\FluxoDeCaixa.MongoDB.csproj" />
+    <ProjectReference Include="..\FluxoDeCaixa.RabbitMQ\FluxoDeCaixa.RabbitMQ.csproj" />
   </ItemGroup>
 
   <ItemGroup>

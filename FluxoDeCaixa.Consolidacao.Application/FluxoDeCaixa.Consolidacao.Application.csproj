@@ -6,11 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modulos\Consolidacao\" />
+    <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
+    <ProjectReference Include="..\System.Extensions\System.Extensions.csproj" />
   </ItemGroup>
 
 </Project>
