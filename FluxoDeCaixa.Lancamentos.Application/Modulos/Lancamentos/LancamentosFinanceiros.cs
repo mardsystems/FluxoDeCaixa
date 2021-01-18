@@ -79,7 +79,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         }
     }
 
-    public class ComandoParaIniciarLancamentoFinanceiro : IRequest
+    public class ComandoParaProcessarLancamentosFinanceiros : IRequest
     {
 
     }

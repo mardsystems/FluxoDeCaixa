@@ -3,7 +3,7 @@
 namespace FluxoDeCaixa.Modulos.Consolidacao
 {
 
-    public class ComandoParaIniciarConsolidacao : IRequest
+    public class ComandoParaConsolidarLancamentosProcessados : IRequest
     {
 
     }

@@ -8,18 +8,22 @@ namespace FluxoDeCaixa.Modulos
     {
         #region Lancamentos
 
-        public static void AddModuloLancamentosParaProtocolo(this IServiceCollection services)
-        {
-            services.AddProtocolos();
-        }
-
         public static void AddModuloLancamentos(this IServiceCollection services)
         {
+            //services.AddProtocolos();
+
             services.AddPagamentos();
 
             services.AddLancamentos();
 
             services.AddContas();
+        }
+
+        public static void AddModuloLancamentosParaProtocolamento(this IServiceCollection services)
+        {
+            services.AddProtocolos();
+
+            services.AddLancamentosParaProtocolamento();
         }
 
         public static void AddModuloLancamentosParaConsultas(this IServiceCollection services)
@@ -33,6 +37,8 @@ namespace FluxoDeCaixa.Modulos
 
         public static void AddModuloConsolidacao(this IServiceCollection services)
         {
+            services.AddLancamentosParaConsolidacao();
+
             services.AddConsolidacaoDeLancamentos();
         }
 

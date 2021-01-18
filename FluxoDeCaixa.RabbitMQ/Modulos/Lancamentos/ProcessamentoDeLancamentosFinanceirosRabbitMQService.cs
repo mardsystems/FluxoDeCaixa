@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
 {
-    public class LancamentosFinanceirosRabbitMQService :
-        IRequestHandler<ComandoDeLancamentoFinanceiro>,
-        IRequestHandler<ComandoParaIniciarLancamentoFinanceiro>,
-        IDisposable
+    /// <summary>
+    /// Serviço RabbitMQ para processamento de lançamentos financeiros.
+    /// </summary>
+    public class ProcessamentoDeLancamentosFinanceirosRabbitMQService : IRequestHandler<ComandoParaProcessarLancamentosFinanceiros>, IDisposable
     {
         private readonly Dictionary<TipoDeLancamento, string> queueBy;
 
@@ -30,7 +30,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         private IServiceScope consumerScope;
 
-        public LancamentosFinanceirosRabbitMQService(IServiceScopeFactory scopeFactory)
+        public ProcessamentoDeLancamentosFinanceirosRabbitMQService(IServiceScopeFactory scopeFactory)
         {
             queueBy = new Dictionary<TipoDeLancamento, string>();
 
@@ -43,7 +43,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
             factory = new ConnectionFactory() { HostName = "message_broker" };
         }
 
-        public async Task<Unit> Handle(ComandoParaIniciarLancamentoFinanceiro comando, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(ComandoParaProcessarLancamentosFinanceiros comando, CancellationToken cancellationToken)
         {
             connection = factory.CreateConnection();
 
@@ -128,40 +128,6 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
                 consumerScope.Dispose();
             }
-        }
-
-        public async Task<Unit> Handle(ComandoDeLancamentoFinanceiro comando, CancellationToken cancellationToken)
-        {
-            var factory = new ConnectionFactory() { HostName = "message_broker" };
-
-            using (var connection = factory.CreateConnection())
-            {
-                using (var channel = connection.CreateModel())
-                {
-                    channel.QueueDeclare(
-                        queue: queueBy[comando.TipoDeLancamento],
-                        durable: false,
-                        exclusive: false,
-                        autoDelete: false,
-                        arguments: null
-                    );
-
-                    var content = JsonConvert.SerializeObject(comando);
-
-                    var body = Encoding.UTF8.GetBytes(content);
-
-                    channel.BasicPublish(
-                        exchange: "",
-                        routingKey: queueBy[comando.TipoDeLancamento],
-                        basicProperties: null,
-                        body: body
-                    );
-
-                    Console.WriteLine(" [x] ComandoDeLancamentoFinanceiro Published {0}", content);
-                }
-            }
-
-            return await Unit.Task;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await mediator.Send(new ComandoParaIniciarConsolidacao());
+            await mediator.Send(new ComandoParaConsolidarLancamentosProcessados());
         }
     }
 }

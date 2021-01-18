@@ -16,7 +16,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await mediator.Send(new ComandoParaIniciarLancamentoFinanceiro());
+            await mediator.Send(new ComandoParaProcessarLancamentosFinanceiros());
         }
     }
 }

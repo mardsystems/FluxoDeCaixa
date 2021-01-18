@@ -8,8 +8,6 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         public static void AddProtocolos(this IServiceCollection services)
         {
             services.AddTransient<IGeracaoDeProtocolos, ProtocolosMongoDBService>();
-
-            services.AddMediatR(typeof(LancamentosFinanceirosRabbitMQService));
         }
 
         public static void AddPagamentos(this IServiceCollection services)
@@ -21,11 +19,21 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         {
             services.AddTransient<IRepositorioDeLancamentos, LancamentosDbService>();
 
-            services.AddMediatR(typeof(ProcessadorDeLancamentosFinanceiros));
+            services.AddMediatR(
+                typeof(ProcessamentoDeLancamentosFinanceirosRabbitMQService),
+                typeof(ProcessadorDeLancamentosFinanceiros),
+                typeof(LancamentosFinanceirosProcessadosRabbitMQService)
+            );
+        }
 
-            services.AddMediatR(typeof(LancamentosFinanceirosRabbitMQService));
+        public static void AddLancamentosParaProtocolamento(this IServiceCollection services)
+        {
+            services.AddMediatR(typeof(ProtocolamentoDeLancamentosFinanceirosRabbitMQService));
+        }
 
-            services.AddMediatR(typeof(LancamentoFinanceiroProcessadoRabbitMQService));
+        public static void AddLancamentosParaConsolidacao(this IServiceCollection services)
+        {
+
         }
 
         public static void AddContas(this IServiceCollection services)

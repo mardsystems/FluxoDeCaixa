@@ -11,9 +11,7 @@ using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Consolidacao
 {
-    public class ConsolidacaoRabbitMQService :
-        IRequestHandler<ComandoParaIniciarConsolidacao>,
-        IDisposable
+    public class ConsolidacaoDeLancamentosProcessadosRabbitMQService : IRequestHandler<ComandoParaConsolidarLancamentosProcessados>, IDisposable
     {
         private readonly IConnection connection;
 
@@ -21,7 +19,7 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
 
         private readonly IServiceScope consumerScope;
 
-        public ConsolidacaoRabbitMQService(IServiceScopeFactory scopeFactory)
+        public ConsolidacaoDeLancamentosProcessadosRabbitMQService(IServiceScopeFactory scopeFactory)
         {
             var factory = new ConnectionFactory() { HostName = "message_broker" };
 
@@ -40,7 +38,7 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
             consumerScope = scopeFactory.CreateScope();
         }
 
-        public Task<Unit> Handle(ComandoParaIniciarConsolidacao request, CancellationToken cancellationToken)
+        public Task<Unit> Handle(ComandoParaConsolidarLancamentosProcessados request, CancellationToken cancellationToken)
         {
             var consumer = new EventingBasicConsumer(channel);
 

@@ -41,7 +41,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
             context.Add(nameof(saldoDaConta), saldoDaConta);
 
-            db.Contas.Add(new Conta { Id = "2", Numero = numeroDaConta, Banco = numeroDoBanco, Tipo = tipoDaConta, Documento = documentoDaConta, Saldo = saldoDaConta });
+            //db.Contas.Add(new Conta { Id = "2", Numero = numeroDaConta, Banco = numeroDoBanco, Tipo = tipoDaConta, Documento = documentoDaConta, Saldo = saldoDaConta });
 
             db.SaveChanges();
         }
@@ -58,7 +58,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
                 Valor = valorDoPagamento
             };
 
-            comando.AnexaProtocolo(new Protocolo(numeroDoProtocolo));
+            comando.AnexaProtocolo(new Protocolo(Guid.NewGuid().ToString()));
 
             context.Add(nameof(numeroDoProtocolo), numeroDoProtocolo);
 

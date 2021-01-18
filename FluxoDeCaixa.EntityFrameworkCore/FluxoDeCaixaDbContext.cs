@@ -29,6 +29,9 @@ namespace FluxoDeCaixa
                 .OwnsOne(l => l.Protocolo, b => b.Property(p => p.Id).HasMaxLength(24).HasColumnName("ProtocoloId").IsRequired());
 
             modelBuilder.Entity<Conta>()
+                .Property(p => p.Id).ValueGeneratedNever();
+
+            modelBuilder.Entity<Conta>()
                 .HasIndex(c => new { c.Numero, c.Banco, c.Tipo, c.Documento }).IsUnique();
 
             modelBuilder.Entity<Conta>()

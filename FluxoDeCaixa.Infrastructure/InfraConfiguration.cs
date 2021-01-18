@@ -1,7 +1,5 @@
 ﻿using FluxoDeCaixa.Modulos;
 using MediatR;
-using MediatR.Pipeline;
-using MediatR.Registration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,30 +10,13 @@ namespace FluxoDeCaixa
 {
     public static class InfraConfiguration
     {
-        public static void AddMediatR<TService>(this IServiceCollection services) where TService : class
-        {
-            var serviceConfig = new MediatRServiceConfiguration();
-
-            ServiceRegistrar.AddRequiredServices(services, serviceConfig);
-
-            var multiOpenInterfaces = new[]
-            {
-                typeof(INotificationHandler<>),
-                typeof(IRequestPreProcessor<>),
-                typeof(IRequestPostProcessor<,>),
-                typeof(IRequestExceptionHandler<,,>),
-                typeof(IRequestExceptionAction<,>)
-            };
-
-            foreach (var multiOpenInterface in multiOpenInterfaces)
-            {
-                services.AddTransient(multiOpenInterface, typeof(TService));
-            }
-        }
-
         public static void AddInfraLancamentosApi(this IServiceCollection services)
         {
-            services.AddModuloLancamentosParaProtocolo();
+            //services.AddMediatRCore();
+
+            services.AddModuloLancamentosParaProtocolamento();
+
+            //services.AddMediatR();
         }
 
         public static void AddInfraLancamentosWorkers(this IServiceCollection services, IConfiguration configuration)
@@ -44,13 +25,13 @@ namespace FluxoDeCaixa
 
             services.AddDbContext(configuration);
 
-            //var serviceConfig = new MediatRServiceConfiguration();
-
-            //ServiceRegistrar.AddRequiredServices(services, serviceConfig);
+            //services.AddMediatRCore();
 
             //
 
             services.AddModuloLancamentos();
+
+            //services.AddMediatR();
         }
 
         public static void AddInfraLancamentosTests(this IServiceCollection services)
@@ -59,31 +40,29 @@ namespace FluxoDeCaixa
 
             services.AddDbContextInMemory();
 
-            //var serviceConfig = new MediatRServiceConfiguration();
-
-            //ServiceRegistrar.AddRequiredServices(services, serviceConfig);
+            //services.AddMediatRCore();
 
             //
 
             //services.AddModuloLancamentosTests();
 
             services.AddModuloLancamentos();
+
+            //services.AddMediatR();
         }
 
         public static void AddInfraConsolidacaoWorkers(this IServiceCollection services)
         {
-            //var serviceConfig = new MediatRServiceConfiguration();
-
-            //ServiceRegistrar.AddRequiredServices(services, serviceConfig);
+            //services.AddMediatRCore();
 
             services.AddModuloConsolidacao();
+
+            //services.AddMediatR();
         }
 
         public static void AddInfraConsultasApi(this IServiceCollection services)
         {
-            //var serviceConfig = new MediatRServiceConfiguration();
-
-            //ServiceRegistrar.AddRequiredServices(services, serviceConfig);
+            //services.AddMediatRCore();
 
             //
 
@@ -92,17 +71,19 @@ namespace FluxoDeCaixa
             services.AddModuloConsolidacaoParaConsultas();
 
             services.AddModuloConsultas();
+
+            //services.AddMediatR();
         }
 
         public static void AddInfraPoliticasWorkers(this IServiceCollection services, IConfiguration configuration)
         {
-            //var serviceConfig = new MediatRServiceConfiguration();
-
-            //ServiceRegistrar.AddRequiredServices(services, serviceConfig);
+            //services.AddMediatRCore();
 
             //
 
             services.AddModuloPoliticas();
+
+            //services.AddMediatR();
         }
 
         private static void AddUnitOfWork(this IServiceCollection services)
@@ -177,7 +158,7 @@ namespace FluxoDeCaixa
 
                 using (var context = scopedProvider.GetRequiredService<FluxoDeCaixaDbContext>())
                 {
-                    Thread.Sleep(25000);
+                    //Thread.Sleep(25000);
 
                     context.Database.EnsureCreated();
                 }
