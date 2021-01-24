@@ -62,9 +62,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Domain.Tests",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{51EB84F1-708C-4D47-A271-D8FB7A24D464}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.RabbitMQ", "FluxoDeCaixa.RabbitMQ\FluxoDeCaixa.RabbitMQ.csproj", "{331B664B-8011-4213-9CC4-566C7C944044}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.RabbitMQ", "FluxoDeCaixa.RabbitMQ\FluxoDeCaixa.RabbitMQ.csproj", "{331B664B-8011-4213-9CC4-566C7C944044}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consolidacao.Application", "FluxoDeCaixa.Consolidacao.Application\FluxoDeCaixa.Consolidacao.Application.csproj", "{939A6A0D-CD30-404B-85E6-246F7641F88B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatR.Extensions.Microsoft.DependencyInjection", "MediatR.Extensions.Microsoft.DependencyInjection\MediatR.Extensions.Microsoft.DependencyInjection.csproj", "{7D701998-9674-4F28-8A28-64A80280123F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -148,6 +150,10 @@ Global
 		{939A6A0D-CD30-404B-85E6-246F7641F88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{939A6A0D-CD30-404B-85E6-246F7641F88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{939A6A0D-CD30-404B-85E6-246F7641F88B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D701998-9674-4F28-8A28-64A80280123F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D701998-9674-4F28-8A28-64A80280123F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D701998-9674-4F28-8A28-64A80280123F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D701998-9674-4F28-8A28-64A80280123F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -174,6 +180,7 @@ Global
 		{51EB84F1-708C-4D47-A271-D8FB7A24D464} = {6EF5194D-65E8-4937-B3B6-3493ED720CAB}
 		{331B664B-8011-4213-9CC4-566C7C944044} = {51EB84F1-708C-4D47-A271-D8FB7A24D464}
 		{939A6A0D-CD30-404B-85E6-246F7641F88B} = {EC5C55BA-10E7-4C0F-BA8F-33FFC4D36D8C}
+		{7D701998-9674-4F28-8A28-64A80280123F} = {85A4D83C-E878-4494-AECB-72505EE30CD7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7C1E9A1-3A37-48C1-AC8D-339ABC42DB6D}
