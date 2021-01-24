@@ -9,7 +9,7 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
         {
             services.AddTransient<IRepositorioDeFluxos, ConsolidacaoMongoDBService>();
 
-            services.AddMediatR(
+            services.AddMediatRTypes(
                 typeof(ConsolidadorDeLancamentosProcessados),
                 typeof(ConsolidacaoDeLancamentosProcessadosRabbitMQService)
             );
@@ -17,7 +17,7 @@ namespace FluxoDeCaixa.Modulos.Consolidacao
 
         public static void AddConsolidacaoParaConsultas(this IServiceCollection services)
         {
-            services.AddMediatR(typeof(ConsolidacaoMongoDBService));
+            services.AddMediatRTypes(typeof(ConsolidacaoMongoDBService));
         }
     }
 }

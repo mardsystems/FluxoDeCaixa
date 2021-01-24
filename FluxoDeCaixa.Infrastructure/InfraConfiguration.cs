@@ -12,11 +12,11 @@ namespace FluxoDeCaixa
     {
         public static void AddInfraLancamentosApi(this IServiceCollection services)
         {
-            //services.AddMediatRCore();
+            services.AddMediatRCore();
 
             services.AddModuloLancamentosParaProtocolamento();
 
-            //services.AddMediatR();
+            services.AddMediatR();
         }
 
         public static void AddInfraLancamentosWorkers(this IServiceCollection services, IConfiguration configuration)
@@ -25,13 +25,13 @@ namespace FluxoDeCaixa
 
             services.AddDbContext(configuration);
 
-            //services.AddMediatRCore();
+            services.AddMediatRCore();
 
             //
 
             services.AddModuloLancamentos();
 
-            //services.AddMediatR();
+            services.AddMediatR();
         }
 
         public static void AddInfraLancamentosTests(this IServiceCollection services)
@@ -40,7 +40,7 @@ namespace FluxoDeCaixa
 
             services.AddDbContextInMemory();
 
-            //services.AddMediatRCore();
+            services.AddMediatRCore();
 
             //
 
@@ -48,21 +48,21 @@ namespace FluxoDeCaixa
 
             services.AddModuloLancamentos();
 
-            //services.AddMediatR();
+            services.AddMediatR();
         }
 
         public static void AddInfraConsolidacaoWorkers(this IServiceCollection services)
         {
-            //services.AddMediatRCore();
+            services.AddMediatRCore();
 
             services.AddModuloConsolidacao();
 
-            //services.AddMediatR();
+            services.AddMediatR();
         }
 
         public static void AddInfraConsultasApi(this IServiceCollection services)
         {
-            //services.AddMediatRCore();
+            services.AddMediatRCore();
 
             //
 
@@ -72,18 +72,18 @@ namespace FluxoDeCaixa
 
             services.AddModuloConsultas();
 
-            //services.AddMediatR();
+            services.AddMediatR();
         }
 
         public static void AddInfraPoliticasWorkers(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddMediatRCore();
+            services.AddMediatRCore();
 
             //
 
             services.AddModuloPoliticas();
 
-            //services.AddMediatR();
+            services.AddMediatR();
         }
 
         private static void AddUnitOfWork(this IServiceCollection services)

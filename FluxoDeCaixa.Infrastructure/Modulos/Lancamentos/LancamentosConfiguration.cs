@@ -19,7 +19,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         {
             services.AddTransient<IRepositorioDeLancamentos, LancamentosDbService>();
 
-            services.AddMediatR(
+            services.AddMediatRTypes(
                 typeof(ProcessamentoDeLancamentosFinanceirosRabbitMQService),
                 typeof(ProcessadorDeLancamentosFinanceiros),
                 typeof(LancamentosFinanceirosProcessadosRabbitMQService)
@@ -28,7 +28,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public static void AddLancamentosParaProtocolamento(this IServiceCollection services)
         {
-            services.AddMediatR(typeof(ProtocolamentoDeLancamentosFinanceirosRabbitMQService));
+            services.AddMediatRTypes(typeof(ProtocolamentoDeLancamentosFinanceirosRabbitMQService));
         }
 
         public static void AddLancamentosParaConsolidacao(this IServiceCollection services)
@@ -43,7 +43,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public static void AddContasParaConsultas(this IServiceCollection services)
         {
-            services.AddMediatR(typeof(ContasMongoDBService));
+            services.AddMediatRTypes(typeof(ContasMongoDBService));
         }
     }
 }

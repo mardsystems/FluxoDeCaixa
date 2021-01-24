@@ -19,6 +19,36 @@
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+        private static readonly IList<Type> handlerAssemblyMarkerTypes = new List<Type>();
+
+        public static IServiceCollection AddMediatRCore(this IServiceCollection services, Action<MediatRServiceConfiguration> configuration = null)
+        {
+            var serviceConfig = new MediatRServiceConfiguration();
+
+            configuration?.Invoke(serviceConfig);
+
+            ServiceRegistrar.AddRequiredServices(services, serviceConfig);
+
+            return services;
+        }
+
+        public static IServiceCollection AddMediatRTypes(this IServiceCollection services, params Type[] handlerAssemblyMarkerTypes)
+        {
+            foreach (var handlerAssemblyMarkerType in handlerAssemblyMarkerTypes)
+            {
+                ServiceCollectionExtensions.handlerAssemblyMarkerTypes.Add(handlerAssemblyMarkerType);
+            }
+
+            return services;
+        }
+
+        public static IServiceCollection AddMediatR(this IServiceCollection services)
+        {
+            ServiceRegistrar.AddMediatRClasses(services, handlerAssemblyMarkerTypes.ToArray());
+
+            return services;
+        }
+
         /// <summary>
         /// Registers handlers and mediator types from the specified assemblies
         /// </summary>

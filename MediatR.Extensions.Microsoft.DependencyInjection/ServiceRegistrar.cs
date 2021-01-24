@@ -10,6 +10,45 @@ namespace MediatR.Registration
 {
     public static class ServiceRegistrar
     {
+        public static void AddMediatRClasses(IServiceCollection services, Type[] handlerAssemblyMarkerTypes)
+        {
+            var assembliesToScan = handlerAssemblyMarkerTypes.Select(t => t.GetTypeInfo().Assembly);
+
+            assembliesToScan = (assembliesToScan as Assembly[] ?? assembliesToScan).Distinct().ToArray();
+
+            ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>), services, handlerAssemblyMarkerTypes, assembliesToScan, false);
+            ConnectImplementationsToTypesClosing(typeof(INotificationHandler<>), services, handlerAssemblyMarkerTypes, assembliesToScan, true);
+            ConnectImplementationsToTypesClosing(typeof(IRequestPreProcessor<>), services, handlerAssemblyMarkerTypes, assembliesToScan, true);
+            ConnectImplementationsToTypesClosing(typeof(IRequestPostProcessor<,>), services, handlerAssemblyMarkerTypes, assembliesToScan, true);
+            ConnectImplementationsToTypesClosing(typeof(IRequestExceptionHandler<,,>), services, handlerAssemblyMarkerTypes, assembliesToScan, true);
+            ConnectImplementationsToTypesClosing(typeof(IRequestExceptionAction<,>), services, handlerAssemblyMarkerTypes, assembliesToScan, true);
+
+            var multiOpenInterfaces = new[]
+            {
+                typeof(INotificationHandler<>),
+                typeof(IRequestPreProcessor<>),
+                typeof(IRequestPostProcessor<,>),
+                typeof(IRequestExceptionHandler<,,>),
+                typeof(IRequestExceptionAction<,>)
+            };
+
+            foreach (var multiOpenInterface in multiOpenInterfaces)
+            {
+                var concretions = assembliesToScan
+                    .SelectMany(a => a.DefinedTypes)
+                    .Where(type => type.FindInterfacesThatClose(multiOpenInterface).Any())
+                    .Where(type => handlerAssemblyMarkerTypes.Contains(type))
+                    .Where(type => type.IsConcrete() && type.IsOpenGeneric())
+                    .ToList();
+
+                foreach (var type in concretions)
+                {
+                    services.AddTransient(multiOpenInterface, type);
+                }
+            }
+        }
+
+
         public static void AddMediatRClasses(IServiceCollection services, IEnumerable<Assembly> assembliesToScan)
         {
             assembliesToScan = (assembliesToScan as Assembly[] ?? assembliesToScan).Distinct().ToArray();
@@ -41,6 +80,69 @@ namespace MediatR.Registration
                 foreach (var type in concretions)
                 {
                     services.AddTransient(multiOpenInterface, type);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Helper method use to differentiate behavior between request handlers and notification handlers.
+        /// Request handlers should only be added once (so set addIfAlreadyExists to false)
+        /// Notification handlers should all be added (set addIfAlreadyExists to true)
+        /// </summary>
+        /// <param name="openRequestInterface"></param>
+        /// <param name="services"></param>
+        /// <param name="assembliesToScan"></param>
+        /// <param name="addIfAlreadyExists"></param>
+        private static void ConnectImplementationsToTypesClosing(Type openRequestInterface,
+            IServiceCollection services,
+            Type[] handlerAssemblyMarkerTypes,
+            IEnumerable<Assembly> assembliesToScan,
+            bool addIfAlreadyExists)
+        {
+            var concretions = new List<Type>();
+            var interfaces = new List<Type>();
+            foreach (var type in assembliesToScan.SelectMany(a => a.DefinedTypes).Where(t => !t.IsOpenGeneric()).Where(t => handlerAssemblyMarkerTypes.Contains(t)))
+            {
+                var interfaceTypes = type.FindInterfacesThatClose(openRequestInterface).ToArray();
+                if (!interfaceTypes.Any()) continue;
+
+                if (type.IsConcrete())
+                {
+                    concretions.Add(type);
+                }
+
+                foreach (var interfaceType in interfaceTypes)
+                {
+                    interfaces.Fill(interfaceType);
+                }
+            }
+
+            foreach (var @interface in interfaces)
+            {
+                var exactMatches = concretions.Where(x => x.CanBeCastTo(@interface)).ToList();
+                if (addIfAlreadyExists)
+                {
+                    foreach (var type in exactMatches)
+                    {
+                        services.AddTransient(@interface, type);
+                    }
+                }
+                else
+                {
+                    if (exactMatches.Count > 1)
+                    {
+                        exactMatches.RemoveAll(m => !IsMatchingWithInterface(m, @interface));
+                    }
+
+                    foreach (var type in exactMatches)
+                    {
+                        services.TryAddTransient(@interface, type);
+                    }
+                }
+
+                if (!@interface.IsOpenGeneric())
+                {
+                    AddConcretionsThatCouldBeClosed(@interface, concretions, services);
                 }
             }
         }
