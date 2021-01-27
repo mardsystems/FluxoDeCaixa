@@ -72,13 +72,13 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Marcelo Lança um Pagamento com Sucesso", SourceLine=6)]
+        [TechTalk.SpecRun.ScenarioAttribute("Marcelo Lança um Pagamento com Sucesso", SourceLine=8)]
         public virtual void MarceloLancaUmPagamentoComSucesso()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Marcelo Lança um Pagamento com Sucesso", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -98,18 +98,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("que estou na minha conta (banco: 001, conta Corrente: 567, cpf: 096) com saldo po" +
-                        "sitivo de 15 reais", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
-#line hidden
-#line 9
- testRunner.When("lanço um pagamento de 50 reais nela sob o protocolo 123456789", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
-#line hidden
 #line 10
- testRunner.Then("o saldo da conta deve ser de 65 reais", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+ testRunner.Given("que estou na minha conta (banco: 001, conta Corrente: 567, cpf: 096) com saldo po" +
+                        "sitivo de 123,45 reais", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
 #line hidden
 #line 11
- testRunner.And("um lançamento no valor de 15 reais deve ser adicionado", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+ testRunner.When("lanço um pagamento de 50 reais nela sob o protocolo 123456789", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line hidden
+#line 12
+ testRunner.Then("o saldo da conta deve ser de 73,45 reais", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line hidden
+#line 13
+ testRunner.And("um lançamento no valor de 50 reais deve ser adicionado sob o número de protocolo " +
+                        "123456789", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line hidden
             }
             this.ScenarioCleanup();

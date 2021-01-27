@@ -1,6 +1,13 @@
-﻿using MediatR;
+﻿using BoDi;
+using FluentAssertions;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using Moq;
 using System;
+using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Transactions;
 using TechTalk.SpecFlow;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
@@ -8,40 +15,58 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
     [Binding]
     public sealed class LancamentosFinanceirosStepDefinition
     {
-        private readonly IMediator mediator;
+        private readonly ScenarioContext world;
 
         private readonly FluxoDeCaixaDbContext db;
 
-        private readonly ScenarioContext context;
+        private readonly ProcessadorDeLancamentosFinanceiros sut;
+
+        private readonly Mock<IMediator> mediatorMock;
 
         public LancamentosFinanceirosStepDefinition(
-            ScenarioContext context,
+            ScenarioContext world,
             FluxoDeCaixaDbContext db,
-            IMediator mediator)
+            IServiceScopeFactory scopeFactory,
+            IObjectContainer container)
         {
-            this.context = context;
+            this.world = world;
 
             this.db = db;
 
-            this.mediator = mediator;
+            var scope = scopeFactory.CreateScope();
+
+            var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+
+            mediatorMock = new Mock<IMediator>();
+
+            var repositorioDeLancamentos = scope.ServiceProvider.GetRequiredService<IRepositorioDeLancamentos>();
+
+            var repositorioDeContas = scope.ServiceProvider.GetRequiredService<IRepositorioDeContas>();
+
+            sut = new ProcessadorDeLancamentosFinanceiros(
+                unitOfWork,
+                mediatorMock.Object,
+                repositorioDeLancamentos,
+                repositorioDeContas
+            );
         }
 
         [Given("que estou na minha conta \\(banco: (.*), conta (.*): (.*), cpf: (.*)\\) com saldo positivo de (.*) reais")]
         public void DadaConta(string numeroDoBanco, string tipoDaContaString, string numeroDaConta, string documentoDaConta, decimal saldoDaConta)
         {
-            context.Add(nameof(numeroDoBanco), numeroDoBanco);
+            world.Add(nameof(numeroDoBanco), numeroDoBanco);
 
             var tipoDaConta = (TipoDeConta)Enum.Parse(typeof(TipoDeConta), tipoDaContaString);
 
-            context.Add(nameof(tipoDaConta), tipoDaConta);
+            world.Add(nameof(tipoDaConta), tipoDaConta);
 
-            context.Add(nameof(numeroDaConta), numeroDaConta);
+            world.Add(nameof(numeroDaConta), numeroDaConta);
 
-            context.Add(nameof(documentoDaConta), documentoDaConta);
+            world.Add(nameof(documentoDaConta), documentoDaConta);
 
-            context.Add(nameof(saldoDaConta), saldoDaConta);
+            world.Add(nameof(saldoDaConta), saldoDaConta);
 
-            //db.Contas.Add(new Conta { Id = "2", Numero = numeroDaConta, Banco = numeroDoBanco, Tipo = tipoDaConta, Documento = documentoDaConta, Saldo = saldoDaConta });
+            db.Contas.Add(new Conta { Id = "2", Numero = numeroDaConta, Banco = numeroDoBanco, Tipo = tipoDaConta, Documento = documentoDaConta, Saldo = saldoDaConta });
 
             db.SaveChanges();
         }
@@ -51,30 +76,52 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         {
             var comando = new ComandoDeLancamentoFinanceiro
             {
-                BancoDestino = context["numeroDoBanco"].ToString(),
-                TipoDeConta = (TipoDeConta)context["tipoDaConta"],
-                ContaDestino = context["numeroDaConta"].ToString(),
-                CpfCnpjDestino = context["documentoDaConta"].ToString(),
+                BancoDestino = world["numeroDoBanco"].ToString(),
+                TipoDeConta = (TipoDeConta)world["tipoDaConta"],
+                ContaDestino = world["numeroDaConta"].ToString(),
+                CpfCnpjDestino = world["documentoDaConta"].ToString(),
                 Valor = valorDoPagamento
             };
 
-            comando.AnexaProtocolo(new Protocolo(Guid.NewGuid().ToString()));
+            comando.AnexaProtocolo(new Protocolo(numeroDoProtocolo));
 
-            context.Add(nameof(numeroDoProtocolo), numeroDoProtocolo);
+            world.Add(nameof(numeroDoProtocolo), numeroDoProtocolo);
 
-            await mediator.Send(comando);
+            await sut.Handle(comando, CancellationToken.None);
         }
 
         [Then("o saldo da conta deve ser de (.*) reais")]
         public void EntaoConta(decimal saldoEsperado)
         {
-            // TODO: usar um wrapper para buscar no banco de dados relacional se existe uma conta com saldo atualizado.
+            var table = Database.ExecuteForTest($"SELECT Saldo FROM Contas WHERE Id = 2");
+
+            table.Rows.Should().HaveCountGreaterThan(0);
+
+            var row = table.Rows[0];
+
+            var saldoDaConta = Convert.ToDecimal(row["Saldo"], CultureInfo.InvariantCulture);
+
+            saldoDaConta.Should().Be(saldoEsperado);
         }
 
-        [Then("um lançamento no valor de (.*) reais deve ser adicionado")]
-        public void EntaoLancamento(decimal valorDoLancamento)
+        [Then("um lançamento no valor de (.*) reais deve ser adicionado sob o número de protocolo (.*)")]
+        public void EntaoLancamento(decimal valorDoLancamento, string numeroDoProtocolo)
         {
-            // TODO: usar um wrapper para buscar no banco de dados relacional se existe um lançamento.
+            var numeroDoProtocoloEsperado = world[nameof(numeroDoProtocolo)].ToString();
+
+            var table = Database.ExecuteForTest($"SELECT * FROM Lancamentos WHERE ProtocoloId = {numeroDoProtocoloEsperado}");
+
+            table.Rows.Should().HaveCountGreaterThan(0);
+
+            var row = table.Rows[0];
+
+            var saldoDaConta = Convert.ToDecimal(row["Valor"], CultureInfo.InvariantCulture);
+
+            saldoDaConta.Should().Be(valorDoLancamento);
+
+            numeroDoProtocolo.Should().Be(numeroDoProtocoloEsperado);
+
+            mediatorMock.Verify(mediator => mediator.Publish(It.IsAny<EventoDeLancamentoFinanceiroProcessado>(), CancellationToken.None));
         }
     }
 }

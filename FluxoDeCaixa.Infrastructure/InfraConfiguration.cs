@@ -34,7 +34,7 @@ namespace FluxoDeCaixa
             services.AddMediatR();
         }
 
-        public static void AddInfraLancamentosTests(this IServiceCollection services)
+        public static void AddInfraLancamentosApplicationTests(this IServiceCollection services)
         {
             services.AddUnitOfWork();
 
@@ -159,6 +159,8 @@ namespace FluxoDeCaixa
                 using (var context = scopedProvider.GetRequiredService<FluxoDeCaixaDbContext>())
                 {
                     //Thread.Sleep(25000);
+
+                    context.Database.EnsureDeleted();
 
                     context.Database.EnsureCreated();
                 }
