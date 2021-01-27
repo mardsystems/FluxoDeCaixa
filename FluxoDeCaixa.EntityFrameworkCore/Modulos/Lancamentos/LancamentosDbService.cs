@@ -16,7 +16,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public async Task Adiciona(Lancamento lancamento)
         {
-            await db.Lancamentos.AddAsync(lancamento);
+            await db.ContaLancamentos.AddAsync(lancamento);
 
             await db.SaveChangesAsync();
         }

@@ -4,13 +4,13 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 {
     public static class PagamentosStub
     {
-        public static Pagamento ObtemPagamentoComValorQualquer()
+        public static Pagamento ObtemPagamentoComValorQualquer(DateTime data)
         {
             var pagamento = new Pagamento(
                 new Protocolo(null),
                 123.45m,
                 null,
-                DateTime.Today
+                data
             );
 
             return pagamento;

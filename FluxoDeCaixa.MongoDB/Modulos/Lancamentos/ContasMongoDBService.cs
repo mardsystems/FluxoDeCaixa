@@ -25,7 +25,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
             var conta_id = ObjectId.Parse("000000000000000000000001");
 
-            var conta = new Conta { Id = conta_id.ToString(), Numero = "123", Banco = "001", Tipo = TipoDeConta.Corrente, Documento = "096", Email = "mardsystems@gmail.com", Saldo = 0 };
+            var conta = new Conta { Id = conta_id.ToString(), Numero = "123", Banco = "001", Tipo = TipoDeConta.Corrente, Documento = "096", Email = "mardsystems@gmail.com" };
 
             var document = new BsonDocument
             {
@@ -35,7 +35,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
                 {"tipo", conta.Tipo },
                 {"documento", conta.Documento },
                 {"email", conta.Email },
-                {"saldo", conta.Saldo },
+                //{"saldo", conta.Saldo },
             };
 
             try
@@ -87,7 +87,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
                 Tipo = (TipoDeConta)document["tipo"].AsInt32,
                 Documento = document["documento"].AsString,
                 Email = document["email"].AsString,
-                Saldo = document["saldo"].AsDecimal,
+                //Saldo = document["saldo"].AsDecimal,
             };
         }
 

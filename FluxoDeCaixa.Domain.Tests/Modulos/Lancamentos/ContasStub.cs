@@ -1,21 +1,22 @@
-﻿namespace FluxoDeCaixa.Modulos.Lancamentos
+﻿using Moq;
+using System;
+
+namespace FluxoDeCaixa.Modulos.Lancamentos
 {
     public static class ContasStub
     {
-        public static Conta ObtemContaComSaldoQualquer()
+        public static Conta ObtemConta(decimal saldo, DateTime data, Mock<IRepositorioDeContas> repositorioDeContasMock)
         {
-            var saldo = 200;
+            var conta = new Conta(
+                id: "2",
+                tipo: TipoDeConta.Corrente,
+                numero: "123",
+                banco: "001",
+                documento: "096",
+                email: "",
+                repositorio: repositorioDeContasMock.Object);
 
-            var conta = new Conta(saldo);
-
-            return conta;
-        }
-
-        public static Conta ObtemContaComSaldoNoLimite()
-        {
-            var saldo = Conta.LIMITE_DE_SALDO;
-
-            var conta = new Conta(saldo);
+            repositorioDeContasMock.Setup(r => r.ObtemSaldoDaContaNaDataOrDefault(conta, data)).ReturnsAsync(new Saldo(conta, data, saldo));
 
             return conta;
         }

@@ -30,7 +30,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         public async Task<Unit> Handle(ComandoDeLancamentoFinanceiro comando, CancellationToken cancellationToken)
         {
             await unitOfWork.BeginTransaction();
-            
+
             try
             {
                 var conta = await repositorioDeContas.ObtemConta(comando.ContaDestino, comando.BancoDestino, comando.TipoDeConta, comando.CpfCnpjDestino);
@@ -46,13 +46,13 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
                     //
 
-                    var lancamento = conta.LancaPagamento(pagamento);
+                    var lancamento = await conta.Lanca(pagamento);
 
                     //
 
                     await repositorioDeContas.Atualiza(conta);
 
-                    await repositorioDeLancamentos.Adiciona(lancamento);
+                    //await repositorioDeLancamentos.Adiciona(lancamento);
 
                     var evento = new EventoDeLancamentoFinanceiroProcessado
                     {

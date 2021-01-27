@@ -5,11 +5,6 @@ using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
 {
-    public interface ILancamentos
-    {
-        Lancamento LancaPagamento(Pagamento pagamento, IRepositorioDeContas repositorioDeContas);
-    }
-
     public class Conta
     {
         public const decimal LIMITE_DE_SALDO = -20000;
@@ -26,54 +21,75 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public string Email { get; set; }
 
-        public decimal Saldo { get; set; }
+        public ICollection<Saldo> Saldos { get; set; }
 
-        //public ICollection<Saldo> Saldos { get; set; }
+        public ICollection<Lancamento> Lancamentos { get; set; }
 
-        internal Conta(decimal saldo)
+        internal IRepositorioDeContas repositorio;
+
+        internal Conta(
+            string id,
+            TipoDeConta tipo,
+            string numero,
+            string banco,
+            string documento,
+            string email,
+            IRepositorioDeContas repositorio)
         {
-            Saldo = saldo;
+            Id = id;
+
+            Tipo = tipo;
+
+            Numero = numero;
+
+            Banco = banco;
+
+            Documento = documento;
+
+            Email = email;
 
             //Saldos = new HashSet<Saldo>();
 
-            //Saldos.Add(new Saldo(DateTime.Today, saldo));
+            //Saldos.Add(new Saldo(this, DateTime.Today, saldo));
+
+            this.repositorio = repositorio;
         }
 
-        //public Saldo ObtemSaldoNaData(DateTime data)
-        //{
-        //    var saldo = Saldos.SingleOrDefault(saldo => saldo.Data.Date == data.Date);
-
-        //    if (saldo == default)
-        //    {
-        //        var saldoNovo = CriaSaldoNovoNaData(data);
-
-        //        return saldoNovo;
-        //    }
-        //    else
-        //    {
-        //        return saldo;
-        //    }
-        //}
-
-        //private Saldo CriaSaldoNovoNaData(DateTime data)
-        //{
-        //    var saldoNovo = new Saldo(data, valor: 0);
-
-        //    Saldos.Add(saldoNovo);
-
-        //    return saldoNovo;
-        //}
-
-        internal Lancamento LancaPagamento(Pagamento pagamento)
+        public async Task<Saldo> ObtemSaldoNaData(DateTime data)
         {
-            //var saldo = ObtemSaldoNaData(pagamento.Data);
+            var saldo = await repositorio.ObtemSaldoDaContaNaDataOrDefault(this, data);
 
-            if (Saldo - pagamento.Valor < LIMITE_DE_SALDO)
+            if (saldo == default)
+            {
+                var saldoNovo = await CriaSaldoNovoNaData(data);
+
+                return saldoNovo;
+            }
+            else
+            {
+                return saldo;
+            }
+        }
+
+        private async Task<Saldo> CriaSaldoNovoNaData(DateTime data)
+        {
+            var saldoNovo = new Saldo(this, data, valor: 0);
+
+            await repositorio.Adiciona(saldoNovo);
+
+            return saldoNovo;
+        }
+
+        internal async Task<Lancamento> Lanca(Pagamento pagamento)
+        {
+            var saldo = await ObtemSaldoNaData(pagamento.Data);
+
+            if (saldo.Valor - pagamento.Valor < LIMITE_DE_SALDO)
             {
                 throw new ApplicationException("A conta não pode ficar mais de R$ 20.000,00 negativos");
             }
 
-            Saldo = Saldo - pagamento.Valor;
+            saldo.Valor = saldo.Valor - pagamento.Valor;
 
             var lancamento = new Lancamento(
                 pagamento.Protocolo,
@@ -84,26 +100,41 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
                 TipoDeLancamento.Pagamento
             );
 
+            await repositorio.Adiciona(lancamento);
+
             return lancamento;
         }
 
         internal Conta()
         {
-
+            Saldos = new HashSet<Saldo>();
         }
     }
 
     public class Saldo
     {
+        public Conta Conta { get; set; }
+
+        public string ContaId { get; set; }
+
         public DateTime Data { get; set; }
 
         public decimal Valor { get; set; }
 
-        public Saldo(DateTime data, decimal valor)
+        public Saldo(Conta conta, DateTime data, decimal valor)
         {
-            Data = data;
+            Conta = conta;
+
+            ContaId = conta.Id;
+
+            Data = data.Date;
 
             Valor = valor;
+        }
+
+        internal Saldo()
+        {
+
         }
     }
 
@@ -119,6 +150,12 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         //decimal ObtemSaldoDaContaNaData(Conta conta, DateTime data);
 
+        Task<Saldo> ObtemSaldoDaContaNaDataOrDefault(Conta conta, DateTime data);
+
         Task Atualiza(Conta conta);
+
+        Task Adiciona(Saldo saldo);
+
+        Task Adiciona(Lancamento lancamento);
     }
 }

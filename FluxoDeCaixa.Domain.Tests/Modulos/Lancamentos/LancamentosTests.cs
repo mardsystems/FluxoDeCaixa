@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Moq;
+using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
@@ -11,26 +13,44 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         protected Lancamento lancamento;
 
+        protected readonly Mock<IRepositorioDeContas> repositorioDeContasMock;
+
+        protected DateTime hoje = DateTime.Today;
+
+        public AoLancarUmPagamentoNumaConta()
+        {
+            repositorioDeContasMock = new Mock<IRepositorioDeContas>();
+        }
+
         public override void Act()
         {
-            lancamento = conta.LancaPagamento(pagamento);
+            try
+            {
+                lancamento = conta.Lanca(pagamento).GetAwaiter().GetResult();
+            }
+            catch (AggregateException ex)
+            {
+                throw ex.InnerException;
+            }
         }
 
         public class ComSucesso : AoLancarUmPagamentoNumaConta
         {
             public ComSucesso()
             {
-                conta = ContasStub.ObtemContaComSaldoQualquer();
+                var saldo = 200;
 
-                pagamento = PagamentosStub.ObtemPagamentoComValorQualquer();
+                conta = ContasStub.ObtemConta(saldo, hoje, repositorioDeContasMock);
+
+                pagamento = PagamentosStub.ObtemPagamentoComValorQualquer(hoje);
             }
 
             [Fact]
-            public void O_Saldo_Da_Conta_Deve_Ser_Decrescido_Do_Valor_Do_Pagamento()
+            public async Task O_Saldo_Da_Conta_Deve_Ser_Decrescido_Do_Valor_Do_Pagamento()
             {
-                var saldoHoje = conta.Saldo; // ObtemSaldoNaData(DateTime.Today);
+                var saldoHoje = await conta.ObtemSaldoNaData(hoje);
 
-                var saldoDaContaEsperadoHoje = saldoHoje - pagamento.Valor;
+                var saldoDaContaEsperadoHoje = saldoHoje.Valor - pagamento.Valor;
 
                 //
 
@@ -38,7 +58,9 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
                 //
 
-                Assert.Equal(saldoDaContaEsperadoHoje, conta.Saldo);
+                var saldoDaConta = await conta.ObtemSaldoNaData(hoje);
+
+                Assert.Equal(saldoDaContaEsperadoHoje, saldoDaConta.Valor);
             }
 
             [Fact]
@@ -116,7 +138,9 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         {
             public ComSaldoNoLimite()
             {
-                conta = ContasStub.ObtemContaComSaldoNoLimite();
+                var saldo = Conta.LIMITE_DE_SALDO;
+
+                conta = ContasStub.ObtemConta(saldo, hoje, repositorioDeContasMock);
 
                 pagamento = PagamentosStub.ObtemPagamentoComMenorValorPossivel();
             }

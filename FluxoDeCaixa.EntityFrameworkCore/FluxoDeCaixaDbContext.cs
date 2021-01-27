@@ -7,7 +7,9 @@ namespace FluxoDeCaixa
     {
         public DbSet<Conta> Contas { get; set; }
 
-        public DbSet<Lancamento> Lancamentos { get; set; }
+        public DbSet<Saldo> ContaSaldos { get; set; }
+
+        public DbSet<Lancamento> ContaLancamentos { get; set; }
 
         public FluxoDeCaixaDbContext(DbContextOptions<FluxoDeCaixaDbContext> options)
             : base(options)
@@ -19,15 +21,6 @@ namespace FluxoDeCaixa
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Lancamento>()
-                .HasKey(l => l.ProtocoloId);
-
-            modelBuilder.Entity<Lancamento>()
-                .Property(l => l.ProtocoloId).HasMaxLength(24);
-
-            modelBuilder.Entity<Lancamento>()
-                .OwnsOne(l => l.Protocolo, b => b.Property(p => p.Id).HasMaxLength(24).HasColumnName("ProtocoloId").IsRequired());
-
             modelBuilder.Entity<Conta>()
                 .Property(p => p.Id).ValueGeneratedNever();
 
@@ -36,8 +29,20 @@ namespace FluxoDeCaixa
 
             modelBuilder.Entity<Conta>()
                 .HasData(
-                    new Conta { Id = "1", Numero = "123", Banco = "001", Tipo = TipoDeConta.Corrente, Documento = "096", Email = "mardsystems@gmail.com", Saldo = 0 }
+                    new Conta { Id = "1", Numero = "123", Banco = "001", Tipo = TipoDeConta.Corrente, Documento = "096", Email = "mardsystems@gmail.com" }
                 );
+
+            modelBuilder.Entity<Saldo>()
+                .HasKey(s => new { s.ContaId, s.Data });
+
+            modelBuilder.Entity<Lancamento>()
+                .HasKey(l => l.ProtocoloId);
+
+            modelBuilder.Entity<Lancamento>()
+                .Property(l => l.ProtocoloId).HasMaxLength(24);
+
+            modelBuilder.Entity<Lancamento>()
+                .OwnsOne(l => l.Protocolo, b => b.Property(p => p.Id).HasMaxLength(24).HasColumnName("ProtocoloId").IsRequired());
         }
     }
 }
