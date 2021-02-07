@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace FluxoDeCaixa.Modulos.Lancamentos
 {
     /// <summary>
-    /// Serviço RabbitMQ para processamento de lançamentos financeiros.
+    /// Serviço RabbitMQ para processar lançamentos financeiros.
     /// </summary>
     public class ProcessamentoDeLancamentosFinanceirosRabbitMQService : IRequestHandler<ComandoParaProcessarLancamentosFinanceiros>, IDisposable
     {
