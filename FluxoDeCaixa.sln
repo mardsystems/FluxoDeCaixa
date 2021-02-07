@@ -68,6 +68,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consolidacao.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatR.Extensions.Microsoft.DependencyInjection", "MediatR.Extensions.Microsoft.DependencyInjection\MediatR.Extensions.Microsoft.DependencyInjection.csproj", "{7D701998-9674-4F28-8A28-64A80280123F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.RabbitMQ.Tests", "FluxoDeCaixa.RabbitMQ.Tests\FluxoDeCaixa.RabbitMQ.Tests.csproj", "{B24EB61A-1BEC-4D71-8672-B83D23A7B1DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -154,6 +156,10 @@ Global
 		{7D701998-9674-4F28-8A28-64A80280123F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D701998-9674-4F28-8A28-64A80280123F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D701998-9674-4F28-8A28-64A80280123F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B24EB61A-1BEC-4D71-8672-B83D23A7B1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B24EB61A-1BEC-4D71-8672-B83D23A7B1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B24EB61A-1BEC-4D71-8672-B83D23A7B1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B24EB61A-1BEC-4D71-8672-B83D23A7B1DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -181,6 +187,7 @@ Global
 		{331B664B-8011-4213-9CC4-566C7C944044} = {51EB84F1-708C-4D47-A271-D8FB7A24D464}
 		{939A6A0D-CD30-404B-85E6-246F7641F88B} = {EC5C55BA-10E7-4C0F-BA8F-33FFC4D36D8C}
 		{7D701998-9674-4F28-8A28-64A80280123F} = {85A4D83C-E878-4494-AECB-72505EE30CD7}
+		{B24EB61A-1BEC-4D71-8672-B83D23A7B1DB} = {51EB84F1-708C-4D47-A271-D8FB7A24D464}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7C1E9A1-3A37-48C1-AC8D-339ABC42DB6D}

@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System;
@@ -11,14 +11,23 @@ using System.Threading.Tasks;
 namespace FluxoDeCaixa.Modulos.Lancamentos
 {
     /// <summary>
-    /// Serviço RabbitMQ para protocoloamento de lançamentos financeiros.
+    /// Serviço RabbitMQ para protocolar lançamentos financeiros.
     /// </summary>
     public class ProtocolamentoDeLancamentosFinanceirosRabbitMQService : IRequestHandler<ComandoDeLancamentoFinanceiro>
     {
+        private readonly ConnectionFactory connectionFactory;
+
         private readonly Dictionary<TipoDeLancamento, string> queueBy;
 
-        public ProtocolamentoDeLancamentosFinanceirosRabbitMQService(IServiceScopeFactory scopeFactory)
+        public ProtocolamentoDeLancamentosFinanceirosRabbitMQService(IConfiguration configuration)
         {
+            connectionFactory = new ConnectionFactory()
+            {
+                HostName = configuration["RabbitMQ_HostName"]
+            };
+
+            //
+
             queueBy = new Dictionary<TipoDeLancamento, string>();
 
             queueBy.Add(TipoDeLancamento.Pagamento, "pagamentos");
@@ -28,9 +37,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public async Task<Unit> Handle(ComandoDeLancamentoFinanceiro comando, CancellationToken cancellationToken)
         {
-            var factory = new ConnectionFactory() { HostName = "message_broker" };
-
-            using (var connection = factory.CreateConnection())
+            using (var connection = connectionFactory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
                 {
