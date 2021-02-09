@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 using System;
-using System.IO;
 using System.Threading;
 using Xunit;
 
@@ -18,8 +17,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         public AoProtocolarUmPagamento()
         {
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables()
                 .Build();
 
             connectionFactory = new ConnectionFactory()
