@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using RabbitMQ.Client;
-using System;
+﻿using System;
 using System.Threading;
 using Xunit;
 
@@ -10,27 +8,18 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
     {
         private readonly ProtocolamentoDeLancamentosFinanceirosRabbitMQService sut;
 
-        private ComandoDeLancamentoFinanceiro comandoOriginal;
-
         public const string CONST_FILA_NOME = "pagamentos";
+
+        private ComandoDeLancamentoFinanceiro comandoOriginal;
 
         public AoProtocolarUmPagamento()
         {
-            var configuration = new ConfigurationBuilder()
-                .AddEnvironmentVariables()
-                .Build();
-
-            connectionFactory = new ConnectionFactory()
-            {
-                HostName = configuration["RabbitMQ_HostName"]
-            };
-
             sut = new ProtocolamentoDeLancamentosFinanceirosRabbitMQService(configuration);
         }
 
-        public override async void Act()
+        public override void Act()
         {
-            await sut.Handle(comandoOriginal, CancellationToken.None);
+            sut.Handle(comandoOriginal, CancellationToken.None).GetAwaiter().GetResult();
         }
 
         public class ComSucesso : AoProtocolarUmPagamento
@@ -41,16 +30,19 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
                 {
                     TipoDeLancamento = TipoDeLancamento.Pagamento,
                     ContaDestino = "conta falsa", // deve existir uma conta falsa, até mesmo em produção, para fins de teste
-                    Protocolo = new Protocolo(Guid.NewGuid().ToString()),
-                    Descricao = "teste_rabbit_mq",
+                    Descricao = "teste_protocoloamento_rabbit_mq",
                     Valor = 123.45m,
                 };
+
+                var protocolo = new Protocolo(Guid.NewGuid().ToString());
+
+                comandoOriginal.AnexaProtocolo(protocolo);
             }
 
             [Fact]
             public void O_Comando_De_LancamentoFinanceiro_Deve_Ser_Enviado_Para_A_Fila_De_Pagamentos()
             {
-                var comandoRecuperado = Act<ComandoDeLancamentoFinanceiro>(CONST_FILA_NOME);
+                var comandoRecuperado = ActAndReceive<ComandoDeLancamentoFinanceiro>(CONST_FILA_NOME);
 
                 Assert.Equal(comandoOriginal.Protocolo.Id, comandoRecuperado.Protocolo.Id);
             }
