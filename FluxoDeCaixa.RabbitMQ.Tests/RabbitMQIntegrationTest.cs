@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
@@ -8,62 +10,103 @@ namespace FluxoDeCaixa
 {
     public abstract class RabbitMQIntegrationTest
     {
-        protected ConnectionFactory connectionFactory;
+        protected readonly IConfiguration configuration;
+
+        protected readonly IServiceCollection services;
+
+        protected readonly ConnectionFactory connectionFactory;
 
         public RabbitMQIntegrationTest()
         {
+            configuration = new ConfigurationBuilder()
+                .AddEnvironmentVariables()
+                .Build();
 
+            services = new ServiceCollection();
+
+            connectionFactory = new ConnectionFactory()
+            {
+                HostName = configuration["RabbitMQ_HostName"]
+            };
         }
 
         public abstract void Act();
 
-        public T Act<T>(string CONST_FILA_NOME)
+        public void ActAndPublish<T>(T message, string queueName)
         {
-            var connection = connectionFactory.CreateConnection();
+            Act();
 
-            var channel = connection.CreateModel();
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare(
+                        queue: queueName,
+                        durable: false,
+                        exclusive: false,
+                        autoDelete: false,
+                        arguments: null
+                    );
 
-            channel.QueueDeclare(
-                queue: CONST_FILA_NOME,
-                durable: false,
-                exclusive: false,
-                autoDelete: false,
-                arguments: null
-            );
+                    var content = JsonConvert.SerializeObject(message);
 
-            //channel.QueuePurge(CONST_FILA_NOME);
+                    var body = Encoding.UTF8.GetBytes(content);
 
-            //
+                    channel.BasicPublish(
+                        exchange: "",
+                        routingKey: queueName,
+                        basicProperties: null,
+                        body: body
+                    );
+                }
+            }            
+        }
 
-            var consumer = new EventingBasicConsumer(channel);
+        public T ActAndReceive<T>(string queueName)
+        {
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare(
+                        queue: queueName,
+                        durable: false,
+                        exclusive: false,
+                        autoDelete: false,
+                        arguments: null
+                    );
 
-            //pagamentosConsumer.Received += new EventHandler<BasicDeliverEventArgs>((sender, args) =>
-            //{
-            //});
+                    //channel.QueuePurge(queueName);
 
-            channel.BasicConsume(
-                queue: CONST_FILA_NOME,
-                autoAck: false,
-                consumer: consumer
-            );
+                    //
 
-            var @event = Assert.Raises<BasicDeliverEventArgs>(
-                a => consumer.Received += a,
-                a => consumer.Received -= a,
-                Act
-            );
+                    var consumer = new EventingBasicConsumer(channel);
 
-            var args = @event.Arguments;
+                    channel.BasicConsume(
+                        queue: queueName,
+                        autoAck: false,
+                        consumer: consumer
+                    );
 
-            var body = args.Body.ToArray();
+                    var @event = Assert.Raises<BasicDeliverEventArgs>(
+                        a => consumer.Received += a,
+                        a => consumer.Received -= a,
+                        Act
+                    );
 
-            var content = Encoding.UTF8.GetString(body);
+                    var args = @event.Arguments;
 
-            var comando = JsonConvert.DeserializeObject<T>(content);
+                    var body = args.Body.ToArray();
 
-            channel.BasicAck(args.DeliveryTag, false);
+                    var content = Encoding.UTF8.GetString(body);
 
-            return comando;
+                    var message = JsonConvert.DeserializeObject<T>(content);
+
+                    channel.BasicAck(args.DeliveryTag, false);
+
+                    return message;
+                }
+            }
         }
     }
 }
