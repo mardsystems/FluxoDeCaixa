@@ -22,53 +22,53 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Documentação", "6 - D
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Domain", "FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj", "{2F7F8E0E-9263-4343-A152-8C4A81D5240C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Domain", "src\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj", "{2F7F8E0E-9263-4343-A152-8C4A81D5240C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Infrastructure", "FluxoDeCaixa.Infrastructure\FluxoDeCaixa.Infrastructure.csproj", "{F62199EA-432D-415D-AD7C-F99129D918D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Infrastructure", "src\FluxoDeCaixa.Infrastructure\FluxoDeCaixa.Infrastructure.csproj", "{F62199EA-432D-415D-AD7C-F99129D918D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.EntityFrameworkCore", "FluxoDeCaixa.EntityFrameworkCore\FluxoDeCaixa.EntityFrameworkCore.csproj", "{57FD4130-5979-4676-A288-9B0F2CDFF978}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.EntityFrameworkCore", "src\FluxoDeCaixa.EntityFrameworkCore\FluxoDeCaixa.EntityFrameworkCore.csproj", "{57FD4130-5979-4676-A288-9B0F2CDFF978}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Api", "FluxoDeCaixa.Lancamentos.Api\FluxoDeCaixa.Lancamentos.Api.csproj", "{21F0117C-F648-4D54-B673-57A1A715E5E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Api", "src\FluxoDeCaixa.Lancamentos.Api\FluxoDeCaixa.Lancamentos.Api.csproj", "{21F0117C-F648-4D54-B673-57A1A715E5E0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consultas.Api", "FluxoDeCaixa.Consultas.Api\FluxoDeCaixa.Consultas.Api.csproj", "{BB147791-3752-4978-83C9-0AEDD96E1497}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consultas.Api", "src\FluxoDeCaixa.Consultas.Api\FluxoDeCaixa.Consultas.Api.csproj", "{BB147791-3752-4978-83C9-0AEDD96E1497}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Workers", "FluxoDeCaixa.Lancamentos.Workers\FluxoDeCaixa.Lancamentos.Workers.csproj", "{A814A7BD-5583-4200-AFC0-7CDB2FB80411}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Workers", "src\FluxoDeCaixa.Lancamentos.Workers\FluxoDeCaixa.Lancamentos.Workers.csproj", "{A814A7BD-5583-4200-AFC0-7CDB2FB80411}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consolidacao.Workers", "FluxoDeCaixa.Consolidacao.Workers\FluxoDeCaixa.Consolidacao.Workers.csproj", "{8F03F4DB-0F5D-402C-A1BA-6E7C77B96480}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consolidacao.Workers", "src\FluxoDeCaixa.Consolidacao.Workers\FluxoDeCaixa.Consolidacao.Workers.csproj", "{8F03F4DB-0F5D-402C-A1BA-6E7C77B96480}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Politicas.Workers", "FluxoDeCaixa.Politicas.Workers\FluxoDeCaixa.Politicas.Workers.csproj", "{12D01B33-CE55-4BBB-844C-5F98844E7635}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Politicas.Workers", "src\FluxoDeCaixa.Politicas.Workers\FluxoDeCaixa.Politicas.Workers.csproj", "{12D01B33-CE55-4BBB-844C-5F98844E7635}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FFB22A5A-585F-4FBC-ADB8-1D99018B12A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.MongoDB", "FluxoDeCaixa.MongoDB\FluxoDeCaixa.MongoDB.csproj", "{ED72DF5D-394D-43C6-A4DA-B326C363E623}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.MongoDB", "src\FluxoDeCaixa.MongoDB\FluxoDeCaixa.MongoDB.csproj", "{ED72DF5D-394D-43C6-A4DA-B326C363E623}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Services", "Data Services", "{9BC513A1-A6E2-4E80-A340-BEF2090A3747}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{85A4D83C-E878-4494-AECB-72505EE30CD7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Application", "FluxoDeCaixa.Lancamentos.Application\FluxoDeCaixa.Lancamentos.Application.csproj", "{F63D1DD7-8E3A-41B5-8342-5ED2C25696BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Application", "src\FluxoDeCaixa.Lancamentos.Application\FluxoDeCaixa.Lancamentos.Application.csproj", "{F63D1DD7-8E3A-41B5-8342-5ED2C25696BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consolidacao.Application.Core", "FluxoDeCaixa.Consolidacao.Application.Core\FluxoDeCaixa.Consolidacao.Application.Core.csproj", "{4AE83297-ED7E-4E62-82E7-505BD30A739E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consolidacao.Application.Core", "src\FluxoDeCaixa.Consolidacao.Application.Core\FluxoDeCaixa.Consolidacao.Application.Core.csproj", "{4AE83297-ED7E-4E62-82E7-505BD30A739E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Application.Core", "FluxoDeCaixa.Lancamentos.Application.Core\FluxoDeCaixa.Lancamentos.Application.Core.csproj", "{457034CE-33BE-42C0-B40B-AC8799E3321D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Application.Core", "src\FluxoDeCaixa.Lancamentos.Application.Core\FluxoDeCaixa.Lancamentos.Application.Core.csproj", "{457034CE-33BE-42C0-B40B-AC8799E3321D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consultas.Application", "FluxoDeCaixa.Consultas.Application\FluxoDeCaixa.Consultas.Application.csproj", "{BD1BFCA7-2C07-4619-B942-C00B6424E076}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consultas.Application", "src\FluxoDeCaixa.Consultas.Application\FluxoDeCaixa.Consultas.Application.csproj", "{BD1BFCA7-2C07-4619-B942-C00B6424E076}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Extensions", "System.Extensions\System.Extensions.csproj", "{51210988-BA4C-4500-BF51-F576C2E4BEB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Extensions", "src\System.Extensions\System.Extensions.csproj", "{51210988-BA4C-4500-BF51-F576C2E4BEB3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Application.Tests", "FluxoDeCaixa.Lancamentos.Application.Tests\FluxoDeCaixa.Lancamentos.Application.Tests.csproj", "{CEE40310-2106-4FA1-9C6B-4E54FD6CF9CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Lancamentos.Application.Tests", "tests\FluxoDeCaixa.Lancamentos.Application.Tests\FluxoDeCaixa.Lancamentos.Application.Tests.csproj", "{CEE40310-2106-4FA1-9C6B-4E54FD6CF9CC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Domain.Tests", "FluxoDeCaixa.Domain.Tests\FluxoDeCaixa.Domain.Tests.csproj", "{8C40177B-085D-442A-81DE-FABE045B8324}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Domain.Tests", "tests\FluxoDeCaixa.Domain.Tests\FluxoDeCaixa.Domain.Tests.csproj", "{8C40177B-085D-442A-81DE-FABE045B8324}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{51EB84F1-708C-4D47-A271-D8FB7A24D464}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.RabbitMQ", "FluxoDeCaixa.RabbitMQ\FluxoDeCaixa.RabbitMQ.csproj", "{331B664B-8011-4213-9CC4-566C7C944044}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.RabbitMQ", "src\FluxoDeCaixa.RabbitMQ\FluxoDeCaixa.RabbitMQ.csproj", "{331B664B-8011-4213-9CC4-566C7C944044}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consolidacao.Application", "FluxoDeCaixa.Consolidacao.Application\FluxoDeCaixa.Consolidacao.Application.csproj", "{939A6A0D-CD30-404B-85E6-246F7641F88B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Consolidacao.Application", "src\FluxoDeCaixa.Consolidacao.Application\FluxoDeCaixa.Consolidacao.Application.csproj", "{939A6A0D-CD30-404B-85E6-246F7641F88B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatR.Extensions.Microsoft.DependencyInjection", "MediatR.Extensions.Microsoft.DependencyInjection\MediatR.Extensions.Microsoft.DependencyInjection.csproj", "{7D701998-9674-4F28-8A28-64A80280123F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatR.Extensions.Microsoft.DependencyInjection", "src\MediatR.Extensions.Microsoft.DependencyInjection\MediatR.Extensions.Microsoft.DependencyInjection.csproj", "{7D701998-9674-4F28-8A28-64A80280123F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.RabbitMQ.Tests", "FluxoDeCaixa.RabbitMQ.Tests\FluxoDeCaixa.RabbitMQ.Tests.csproj", "{B24EB61A-1BEC-4D71-8672-B83D23A7B1DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.RabbitMQ.Tests", "tests\FluxoDeCaixa.RabbitMQ.Tests\FluxoDeCaixa.RabbitMQ.Tests.csproj", "{B24EB61A-1BEC-4D71-8672-B83D23A7B1DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
