@@ -27,10 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
-    <ProjectReference Include="..\FluxoDeCaixa.Infrastructure\FluxoDeCaixa.Infrastructure.csproj" />
-    <ProjectReference Include="..\FluxoDeCaixa.Lancamentos.Application\FluxoDeCaixa.Lancamentos.Application.csproj" />
-    <ProjectReference Include="..\System.Extensions\System.Extensions.csproj" />
+    <ProjectReference Include="..\..\src\FluxoDeCaixa.Domain\FluxoDeCaixa.Domain.csproj" />
+    <ProjectReference Include="..\..\src\FluxoDeCaixa.Infrastructure\FluxoDeCaixa.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\FluxoDeCaixa.Lancamentos.Application\FluxoDeCaixa.Lancamentos.Application.csproj" />
+    <ProjectReference Include="..\..\src\System.Extensions\System.Extensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
