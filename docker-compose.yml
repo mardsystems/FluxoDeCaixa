@@ -39,7 +39,7 @@ services:
     image: ${DOCKER_REGISTRY-}fluxodecaixalancamentosapi
     build:
       context: .
-      dockerfile: FluxoDeCaixa.Lancamentos.Api/Dockerfile
+      dockerfile: src/FluxoDeCaixa.Lancamentos.Api/Dockerfile
     depends_on:
       - message_broker
     networks:
@@ -50,7 +50,7 @@ services:
     image: ${DOCKER_REGISTRY-}fluxodecaixalancamentosworkers
     build:
       context: .
-      dockerfile: FluxoDeCaixa.Lancamentos.Workers/Dockerfile
+      dockerfile: src/FluxoDeCaixa.Lancamentos.Workers/Dockerfile
     depends_on:
       - message_broker
       - banco_transacional
@@ -62,7 +62,7 @@ services:
     image: ${DOCKER_REGISTRY-}fluxodecaixaconsolidacaoworkers
     build:
       context: .
-      dockerfile: FluxoDeCaixa.Consolidacao.Workers/Dockerfile
+      dockerfile: src/FluxoDeCaixa.Consolidacao.Workers/Dockerfile
     depends_on:
       - message_broker
       - banco_analitico
@@ -74,7 +74,7 @@ services:
     image: ${DOCKER_REGISTRY-}fluxodecaixaconsultasapi
     build:
       context: .
-      dockerfile: FluxoDeCaixa.Consultas.Api/Dockerfile
+      dockerfile: src/FluxoDeCaixa.Consultas.Api/Dockerfile
     depends_on:
       - banco_analitico
     networks:
@@ -85,7 +85,7 @@ services:
     image: ${DOCKER_REGISTRY-}fluxodecaixapoliticasworkers
     build:
       context: .
-      dockerfile: FluxoDeCaixa.Politicas.Workers/Dockerfile
+      dockerfile: src/FluxoDeCaixa.Politicas.Workers/Dockerfile
     depends_on:
       - message_broker
       - banco_transacional

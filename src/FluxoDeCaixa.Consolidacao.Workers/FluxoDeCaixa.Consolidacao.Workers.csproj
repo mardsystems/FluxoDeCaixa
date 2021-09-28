@@ -5,6 +5,7 @@
     <UserSecretsId>dotnet-FluxoDeCaixa.Consolidacao.Workers-5B17D32A-E109-438A-A04E-31628BEC9D5C</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <RootNamespace>FluxoDeCaixa</RootNamespace>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>

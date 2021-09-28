@@ -5,6 +5,7 @@
     <UserSecretsId>dotnet-FluxoDeCaixa.Lancamentos.Workers-0AA3EBB7-991A-4F0E-B945-72C5937F3F00</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <RootNamespace>FluxoDeCaixa</RootNamespace>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
