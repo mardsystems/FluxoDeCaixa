@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modulos\Consolidacao\" />
+    <Folder Include="Modulos\Fluxos\" />
     <Folder Include="Modulos\Politicas\" />
   </ItemGroup>
 

@@ -107,6 +107,8 @@ namespace FluxoDeCaixa
 
             services.AddDbContext<FluxoDeCaixaDbContext>(options =>
             {
+                options.UseLazyLoadingProxies();
+
                 options.UseSqlServer(sqlConnection);
 
                 //options.UseSqlite(connectionString);
@@ -126,7 +128,7 @@ namespace FluxoDeCaixa
                 {
                     //Thread.Sleep(25000);
 
-                    context.Database.EnsureDeleted();
+                    //context.Database.EnsureDeleted();
 
                     context.Database.EnsureCreated();
                 }

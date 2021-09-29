@@ -5,7 +5,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 {
     public class Pagamento : ValueObject
     {
-        public Protocolo Protocolo { get; set; }
+        public virtual Protocolo Protocolo { get; set; }
 
         public decimal Valor { get; set; }
 
@@ -33,6 +33,11 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
             yield return Descricao;
 
             yield return Data;
+        }
+
+        public Pagamento()
+        {
+
         }
     }
 }

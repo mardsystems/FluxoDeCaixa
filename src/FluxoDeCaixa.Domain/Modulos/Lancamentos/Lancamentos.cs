@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using System;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
@@ -9,10 +10,11 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
     /// </summary>
     public class Lancamento
     {
-        public Protocolo Protocolo { get; set; }
+        public virtual Protocolo Protocolo { get; set; }
 
         public string ProtocoloId { get; set; }
 
+        [JsonIgnore]
         public virtual Conta Conta { get; set; }
 
         public string ContaId { get; set; }

@@ -22,6 +22,11 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         {
             yield return Id;
         }
+
+        public Protocolo()
+        {
+
+        }
     }
 
     public interface IGeracaoDeProtocolos

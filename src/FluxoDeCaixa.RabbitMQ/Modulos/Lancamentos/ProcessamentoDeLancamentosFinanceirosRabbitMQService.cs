@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -105,7 +105,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
             var content = Encoding.UTF8.GetString(body);
 
-            var comando = JsonConvert.DeserializeObject<ComandoDeLancamentoFinanceiro>(content);
+            var comando = JsonSerializer.Deserialize<ComandoDeLancamentoFinanceiro>(content);
 
             Console.WriteLine(" [x] ComandoDeLancamentoFinanceiro Received {0}", content);
 

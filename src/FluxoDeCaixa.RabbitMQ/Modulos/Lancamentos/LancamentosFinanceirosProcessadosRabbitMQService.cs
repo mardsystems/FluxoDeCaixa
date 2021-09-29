@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,8 +25,8 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
                         autoDelete: false,
                         arguments: null
                     );
-
-                    var content = JsonConvert.SerializeObject(evento);
+                    
+                    var content = JsonSerializer.Serialize(evento);
 
                     var body = Encoding.UTF8.GetBytes(content);
 

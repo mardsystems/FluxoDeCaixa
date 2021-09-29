@@ -56,11 +56,11 @@ services:
       - rede_message_broker
       - rede_oltp
 
-  fluxodecaixa.consolidacao.workers:
-    image: ${DOCKER_REGISTRY-}fluxodecaixaconsolidacaoworkers
+  fluxodecaixa.fluxos.workers:
+    image: ${DOCKER_REGISTRY-}fluxodecaixafluxosworkers
     build:
       context: .
-      dockerfile: src/FluxoDeCaixa.Consolidacao.Workers/Dockerfile
+      dockerfile: src/FluxoDeCaixa.Fluxos.Workers/Dockerfile
     depends_on:
       - message_broker
       - banco_analitico
@@ -68,11 +68,11 @@ services:
       - rede_message_broker
       - rede_olap
 
-  fluxodecaixa.consultas.api:
-    image: ${DOCKER_REGISTRY-}fluxodecaixaconsultasapi
+  fluxodecaixa.fluxos.api:
+    image: ${DOCKER_REGISTRY-}fluxodecaixafluxosapi
     build:
       context: .
-      dockerfile: src/FluxoDeCaixa.Consultas.Api/Dockerfile
+      dockerfile: src/FluxoDeCaixa.Fluxos.Api/Dockerfile
     depends_on:
       - banco_analitico
     networks:

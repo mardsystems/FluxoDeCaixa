@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -49,7 +49,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
                         arguments: null
                     );
 
-                    var content = JsonConvert.SerializeObject(comando);
+                    var content = JsonSerializer.Serialize(comando);
 
                     var body = Encoding.UTF8.GetBytes(content);
 

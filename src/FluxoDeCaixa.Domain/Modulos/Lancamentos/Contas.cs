@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
@@ -21,9 +21,9 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public string Email { get; set; }
 
-        public ICollection<Saldo> Saldos { get; set; }
+        public virtual ICollection<Saldo> Saldos { get; set; }
 
-        public ICollection<Lancamento> Lancamentos { get; set; }
+        public virtual ICollection<Lancamento> Lancamentos { get; set; }
 
         internal IRepositorioDeContas repositorio;
 
@@ -105,7 +105,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
             return lancamento;
         }
 
-        internal Conta()
+        public Conta()
         {
             Saldos = new HashSet<Saldo>();
         }
@@ -113,6 +113,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
     public class Saldo
     {
+        [JsonIgnore]
         public virtual Conta Conta { get; set; }
 
         public string ContaId { get; set; }
@@ -130,7 +131,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
             Valor = valor;
         }
 
-        internal Saldo()
+        public Saldo()
         {
 
         }

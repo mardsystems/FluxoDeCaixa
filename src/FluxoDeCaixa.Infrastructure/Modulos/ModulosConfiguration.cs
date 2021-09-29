@@ -1,4 +1,4 @@
-﻿using FluxoDeCaixa.Modulos.Consolidacao;
+﻿using FluxoDeCaixa.Modulos.Fluxos;
 using FluxoDeCaixa.Modulos.Lancamentos;
 using Microsoft.Extensions.DependencyInjection;
 
