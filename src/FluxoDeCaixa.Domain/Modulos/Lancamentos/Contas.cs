@@ -113,7 +113,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
     public class Saldo
     {
-        public Conta Conta { get; set; }
+        public virtual Conta Conta { get; set; }
 
         public string ContaId { get; set; }
 
@@ -123,8 +123,6 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public Saldo(Conta conta, DateTime data, decimal valor)
         {
-            Conta = conta;
-
             ContaId = conta.Id;
 
             Data = data.Date;

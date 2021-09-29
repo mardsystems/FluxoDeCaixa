@@ -13,7 +13,9 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public string ProtocoloId { get; set; }
 
-        public Conta Conta { get; set; }
+        public virtual Conta Conta { get; set; }
+
+        public string ContaId { get; set; }
 
         public DateTime Data { get; set; }
 
@@ -30,7 +32,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
             ProtocoloId = protocolo.Id;
 
-            Conta = conta;
+            ContaId = conta.Id;
 
             Data = data;
 

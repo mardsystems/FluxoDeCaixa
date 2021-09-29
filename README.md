@@ -4,27 +4,27 @@
 
 ### Contexto do Sistema
 
-![Casos de Uso](Resources/Docs/FluxoDeCaixa_CasosDeUso.png)
+![Casos de Uso](docs/FluxoDeCaixa_CasosDeUso.png)
 
 ### Módulo de Lançamentos
 
-![Lançamentos](Resources/Docs/FluxoDeCaixa_CasosDeUso_Lancamentos.png)
+![Lançamentos](docs/FluxoDeCaixa_CasosDeUso_Lancamentos.png)
 
 ### Módulo de Consolidação
 
-![Consolidação](Resources/Docs/FluxoDeCaixa_CasosDeUso_Consolidacao.png)
+![Consolidação](docs/FluxoDeCaixa_CasosDeUso_Consolidacao.png)
 
 ### Módulo de Consultas
 
-![Consultas](Resources/Docs/FluxoDeCaixa_CasosDeUso_Consultas.png)
+![Consultas](docs/FluxoDeCaixa_CasosDeUso_Consultas.png)
 
 ### Módulo de Políticas
 
-![Políticas](Resources/Docs/FluxoDeCaixa_CasosDeUso_Politicas.png)
+![Políticas](docs/FluxoDeCaixa_CasosDeUso_Politicas.png)
 
 ## Implementação
 
-![Implementação](Resources/Docs/FluxoDeCaixa_Implementacao.png)
+![Implementação](docs/FluxoDeCaixa_Implementacao.png)
 
 ### Message Broker
 
@@ -35,8 +35,8 @@ Filas:
 
 ## Implantação
 
-![Implantação](Resources/Docs/FluxoDeCaixa_Implantacao.png)
+![Implantação](docs/FluxoDeCaixa_Implantacao.png)
 
 ### Postman Collection
 
-[Postman Collection](Resources/Postman/FluxoDeCaixa.postman_collection.json)
+[Postman Collection](tools/postman_collection.json)

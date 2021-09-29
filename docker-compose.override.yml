@@ -7,6 +7,8 @@ services:
       - "15672:15672"
 
   banco_analitico:
+    volumes:
+      - ./data/banco_analitico:/data/db
     ports:
       - "27017:27017"
 

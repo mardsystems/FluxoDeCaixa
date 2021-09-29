@@ -90,7 +90,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
                 //
 
-                Assert.Equal(conta, lancamento.Conta);
+                Assert.Equal(conta.Id, lancamento.ContaId);
             }
 
             [Fact]

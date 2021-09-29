@@ -18,8 +18,6 @@ services:
     container_name: banco_analitico
     restart: always
     image: mongo:3.6
-#    volumes:
-#      - ./data/banco_analitico:/data/db
     networks:
       - rede_olap
 

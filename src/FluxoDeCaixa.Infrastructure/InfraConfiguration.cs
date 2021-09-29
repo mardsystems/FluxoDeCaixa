@@ -124,7 +124,9 @@ namespace FluxoDeCaixa
 
                 using (var context = scopedProvider.GetRequiredService<FluxoDeCaixaDbContext>())
                 {
-                    Thread.Sleep(25000);
+                    //Thread.Sleep(25000);
+
+                    context.Database.EnsureDeleted();
 
                     context.Database.EnsureCreated();
                 }

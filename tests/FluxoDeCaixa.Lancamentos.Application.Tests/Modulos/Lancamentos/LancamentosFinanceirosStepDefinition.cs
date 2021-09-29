@@ -77,7 +77,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
             conta.Saldos = new HashSet<Saldo>()
             {
-                new Saldo { Conta = conta, ContaId = conta.Id, Data = hoje, Valor = saldoDaConta }
+                new Saldo { ContaId = conta.Id, Data = hoje, Valor = saldoDaConta }
             };
 
             db.Contas.Add(conta);
