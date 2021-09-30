@@ -42,14 +42,11 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
             mediatorMock = new Mock<IMediator>();
 
-            var repositorioDeLancamentos = scope.ServiceProvider.GetRequiredService<IRepositorioDeLancamentos>();
-
             repositorioDeContas = scope.ServiceProvider.GetRequiredService<IRepositorioDeContas>();
 
             sut = new ProcessadorDeLancamentosFinanceiros(
                 unitOfWork,
                 mediatorMock.Object,
-                repositorioDeLancamentos,
                 repositorioDeContas
             );
 
@@ -115,7 +112,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         {
             var hoje = (DateTime)world["hoje"];
 
-            var table = Database.ExecuteForTest($"SELECT Valor FROM ContaSaldos WHERE ContaId = 2 AND Data = '{hoje:yyyy-MM-dd 00:00:00}'"); // TODO: ephoc.
+            var table = DatabaseModule.ExecuteForTest($"SELECT Valor FROM ContaSaldos WHERE ContaId = 2 AND Data = '{hoje:yyyy-MM-dd 00:00:00}'"); // TODO: ephoc.
 
             table.Rows.Should().HaveCountGreaterThan(0);
 
@@ -131,7 +128,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
         {
             var numeroDoProtocoloEsperado = world[nameof(numeroDoProtocolo)].ToString();
 
-            var table = Database.ExecuteForTest($"SELECT * FROM ContaLancamentos WHERE ProtocoloId = {numeroDoProtocoloEsperado}");
+            var table = DatabaseModule.ExecuteForTest($"SELECT * FROM ContaLancamentos WHERE ProtocoloId = {numeroDoProtocoloEsperado}");
 
             table.Rows.Should().HaveCountGreaterThan(0);
 

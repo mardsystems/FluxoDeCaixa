@@ -12,17 +12,13 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         private readonly IMediator mediator;
 
-        private readonly IRepositorioDeLancamentos repositorioDeLancamentos;
-
         private readonly IRepositorioDeContas repositorioDeContas;
 
-        public ProcessadorDeLancamentosFinanceiros(IUnitOfWork unitOfWork, IMediator mediator, IRepositorioDeLancamentos repositorioDeLancamentos, IRepositorioDeContas repositorioDeContas)
+        public ProcessadorDeLancamentosFinanceiros(IUnitOfWork unitOfWork, IMediator mediator, IRepositorioDeContas repositorioDeContas)
         {
             this.unitOfWork = unitOfWork;
 
             this.mediator = mediator;
-
-            this.repositorioDeLancamentos = repositorioDeLancamentos;
 
             this.repositorioDeContas = repositorioDeContas;
         }

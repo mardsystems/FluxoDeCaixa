@@ -15,7 +15,7 @@ namespace FluxoDeCaixa
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddInfraConsolidacaoWorkers();
+                    services.AddInfraFluxosWorkers();
 
                     services.AddHostedService<ConsolidacaoService>();
                 });

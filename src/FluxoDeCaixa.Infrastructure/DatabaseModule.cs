@@ -1,97 +1,15 @@
-﻿using FluxoDeCaixa.Modulos;
-using MediatR;
+﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Threading;
-using System.Transactions;
+using System;
+using System.Data;
 
 namespace FluxoDeCaixa
 {
-    public static class InfraConfiguration
+    public static class DatabaseModule
     {
-        public static void AddInfraLancamentosApi(this IServiceCollection services)
-        {
-            services.AddMediatRCore();
-
-            services.AddModuloLancamentosParaProtocolamento();
-
-            services.AddMediatR();
-        }
-
-        public static void AddInfraLancamentosWorkers(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddUnitOfWork();
-
-            services.AddDbContext(configuration);
-
-            services.AddMediatRCore();
-
-            //
-
-            services.AddModuloLancamentos();
-
-            services.AddMediatR();
-        }
-
-        public static void AddInfraLancamentosApplicationTests(this IServiceCollection services)
-        {
-            services.AddUnitOfWork();
-
-            services.AddDbContextInMemory();
-
-            services.AddMediatRCore();
-
-            //
-
-            //services.AddModuloLancamentosTests();
-
-            services.AddModuloLancamentos();
-
-            services.AddMediatR();
-        }
-
-        public static void AddInfraConsolidacaoWorkers(this IServiceCollection services)
-        {
-            services.AddMediatRCore();
-
-            services.AddModuloConsolidacao();
-
-            services.AddMediatR();
-        }
-
-        public static void AddInfraConsultasApi(this IServiceCollection services)
-        {
-            services.AddMediatRCore();
-
-            //
-
-            services.AddModuloLancamentosParaConsultas();
-
-            services.AddModuloConsolidacaoParaConsultas();
-
-            services.AddModuloConsultas();
-
-            services.AddMediatR();
-        }
-
-        public static void AddInfraPoliticasWorkers(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddMediatRCore();
-
-            //
-
-            services.AddModuloPoliticas();
-
-            services.AddMediatR();
-        }
-
-        private static void AddUnitOfWork(this IServiceCollection services)
-        {
-            services.AddTransient<IUnitOfWork, TransactionScopeManager>();
-        }
-
-        private static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
+        internal static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             var sqlConnection = configuration.GetConnectionString("SqlConnection");
 
@@ -135,7 +53,7 @@ namespace FluxoDeCaixa
             }
         }
 
-        private static void AddDbContextInMemory(this IServiceCollection services)
+        internal static void AddDbContextInMemory(this IServiceCollection services)
         {
             var connectionString = @"DataSource=myshared.db";
 
@@ -167,6 +85,36 @@ namespace FluxoDeCaixa
                     context.Database.EnsureDeleted();
 
                     context.Database.EnsureCreated();
+                }
+            }
+        }
+
+        public static DataTable ExecuteForTest(string sql)
+        {
+            using (var connection = new SqliteConnection("DataSource=myshared.db"))
+            {
+                connection.Open();
+
+                try
+                {
+                    using (var command = new SqliteCommand(sql, connection))
+                    {
+                        var reader = command.ExecuteReader();
+
+                        var table = new DataTable();
+
+                        table.Load(reader);
+
+                        return table;
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
         }

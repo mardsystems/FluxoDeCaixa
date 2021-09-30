@@ -10,7 +10,7 @@ namespace FluxoDeCaixa
         {
             var services = new ServiceCollection();
 
-            services.AddInfraLancamentosApplicationTests();
+            services.AddInfraApplicationTests();
 
             return services;
         }
