@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
 {
-    public class LancamentosFinanceirosProcessadosRabbitMQService : INotificationHandler<EventoDeLancamentoFinanceiroProcessado>
+    public class PublicadorDeLancamentosProcessadosRabbitMQ : INotificationHandler<EventoDeLancamentoFinanceiroProcessado>
     {
         public Task Handle(EventoDeLancamentoFinanceiroProcessado evento, CancellationToken cancellationToken)
         {

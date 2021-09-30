@@ -13,13 +13,13 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
     /// <summary>
     /// Serviço RabbitMQ para protocolar lançamentos financeiros.
     /// </summary>
-    public class ProtocolamentoDeLancamentosFinanceirosRabbitMQService : IRequestHandler<ComandoDeLancamentoFinanceiro>
+    public class ProtocoladorDeLancamentosRabbitMQ : IRequestHandler<ComandoDeLancamentoFinanceiro>
     {
         private readonly ConnectionFactory connectionFactory;
 
         private readonly Dictionary<TipoDeLancamento, string> queueBy;
 
-        public ProtocolamentoDeLancamentosFinanceirosRabbitMQService(IConfiguration configuration)
+        public ProtocoladorDeLancamentosRabbitMQ(IConfiguration configuration)
         {
             connectionFactory = new ConnectionFactory()
             {

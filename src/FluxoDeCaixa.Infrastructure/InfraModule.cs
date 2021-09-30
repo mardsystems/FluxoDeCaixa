@@ -13,6 +13,8 @@ namespace FluxoDeCaixa
         {
             services.AddMediatRCore();
 
+            services.AddGeracaoDeProtocolos();
+
             services.AddProtocolamentoDeLancamentos();
 
             services.AddMediatR();

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Fluxos
 {
-    public class ConsolidadorDeLancamentosProcessados : INotificationHandler<EventoDeLancamentoFinanceiroProcessado>
+    public class ConsolidadorDeLancamentos : INotificationHandler<EventoDeLancamentoFinanceiroProcessado>
     {
         private readonly IRepositorioDeFluxoDeCaixa repositorioDeFluxoDeCaixa;
 
-        public ConsolidadorDeLancamentosProcessados(IRepositorioDeFluxoDeCaixa repositorioDeFluxoDeCaixa)
+        public ConsolidadorDeLancamentos(IRepositorioDeFluxoDeCaixa repositorioDeFluxoDeCaixa)
         {
             this.repositorioDeFluxoDeCaixa = repositorioDeFluxoDeCaixa;
         }

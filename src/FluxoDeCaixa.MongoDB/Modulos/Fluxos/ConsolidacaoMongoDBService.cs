@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FluxoDeCaixa.Modulos.Fluxos
 {
-    public class ConsolidacaoMongoDBService : 
+    public class ConsolidacaoMongoDBService :
         IRepositorioDeFluxoDeCaixa,
         IRequestHandler<SolicitacaoDeConsultaDeFluxoDeCaixaDoDia, FluxoDeCaixaDoDia>
     {
@@ -18,7 +18,7 @@ namespace FluxoDeCaixa.Modulos.Fluxos
         {
             var client = new MongoClient("mongodb://banco_analitico:27017");
 
-            var database = client.GetDatabase("FluxoDeCaixaDoDia");
+            var database = client.GetDatabase("FluxoDeCaixa");
 
             collection = database.GetCollection<BsonDocument>("fluxos");
         }
@@ -33,7 +33,7 @@ namespace FluxoDeCaixa.Modulos.Fluxos
 
             if (document == default)
             {
-                throw new EntityNotFoundException<FluxoDeCaixaDoDia>("Fluxo não encontrado.");
+                throw new EntityNotFoundException<FluxoDeCaixaDoDia>("Fluxo de caixa não encontrado.");
             }
 
             var fluxoDeCaixaDoDia = MapFluxoDeCaixaDoDiaFrom(document);
@@ -91,7 +91,7 @@ namespace FluxoDeCaixa.Modulos.Fluxos
                 { "saidas", new BsonArray(fluxoDeCaixa.Saidas.Select(entrada=> new BsonDocument { { "data", entrada.Data }, { "valor", entrada.Valor } })) },
                 { "encargos", new BsonArray(fluxoDeCaixa.Encargos.Select(entrada=> new BsonDocument { { "data", entrada.Data }, { "valor", entrada.Valor } })) },
                 { "total", fluxoDeCaixa.Total },
-                { "percentual", fluxoDeCaixa.Percentual },
+                { "posicao_do_dia", fluxoDeCaixa.PosicaoDoDia },
             };
 
             await collection.InsertOneAsync(document);
@@ -108,7 +108,7 @@ namespace FluxoDeCaixa.Modulos.Fluxos
                 { "encargos", new BsonArray(fluxoDeCaixa.Encargos.Select(entrada=> new BsonDocument { { "data", entrada.Data }, { "valor", entrada.Valor } })) },
                 { "data", fluxoDeCaixa.Data },
                 { "total", fluxoDeCaixa.Total },
-                { "percentual", fluxoDeCaixa.Percentual },
+                { "posicao_do_dia", fluxoDeCaixa.PosicaoDoDia },
             };
 
             await collection.ReplaceOneAsync(filter, document);
@@ -124,7 +124,7 @@ namespace FluxoDeCaixa.Modulos.Fluxos
                 Saidas = document["saidas"].AsBsonArray.Select(entrada => new Lancamento { Data = entrada["data"].ToUniversalTime(), Valor = entrada["valor"].AsDecimal }).ToList(),
                 Encargos = document["encargos"].AsBsonArray.Select(entrada => new Lancamento { Data = entrada["data"].ToUniversalTime(), Valor = entrada["valor"].AsDecimal }).ToList(),
                 Total = document["total"].AsDecimal,
-                Percentual = document["percentual"].AsDecimal,
+                PosicaoDoDia = document["posicao_do_dia"].AsDecimal,
             };
         }
 
@@ -137,7 +137,7 @@ namespace FluxoDeCaixa.Modulos.Fluxos
                 Saidas = document["saidas"].AsBsonArray.Select(entrada => new Saida { Data = entrada["data"].ToUniversalTime(), Valor = entrada["valor"].AsDecimal }).ToArray(),
                 Encargos = document["encargos"].AsBsonArray.Select(entrada => new Encargo { Data = entrada["data"].ToUniversalTime(), Valor = entrada["valor"].AsDecimal }).ToArray(),
                 Total = document["total"].AsDecimal,
-                PosicaoDoDia = document["percentual"].AsDecimal,
+                PosicaoDoDia = document["posicao_do_dia"].AsDecimal,
             };
         }
     }

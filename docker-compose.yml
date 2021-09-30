@@ -26,10 +26,6 @@ services:
     restart: always
     image: mcr.microsoft.com/mssql/server:2019-latest
     hostname: banco_transacional
-    environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "BigPassw0rd"
-      MSSQL_AGENT_ENABLED: "true"
     networks:
       - rede_oltp
 

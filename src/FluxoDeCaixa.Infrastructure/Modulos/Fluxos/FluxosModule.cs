@@ -8,8 +8,8 @@ namespace FluxoDeCaixa.Modulos.Fluxos
         internal static void AddConsolidacaoDeLancamentos(this IServiceCollection services)
         {
             services.AddMediatRTypes(
-                typeof(ConsolidacaoDeLancamentosProcessadosRabbitMQService),
-                typeof(ConsolidadorDeLancamentosProcessados)
+                typeof(ConsolidadorDeLancamentosProcessadosRabbitMQ),
+                typeof(ConsolidadorDeLancamentos)
             );
 
             services.AddFluxoDeCaixa();

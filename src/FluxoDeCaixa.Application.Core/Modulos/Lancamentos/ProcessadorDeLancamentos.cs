@@ -6,7 +6,7 @@ using System.Transactions;
 
 namespace FluxoDeCaixa.Modulos.Lancamentos
 {
-    public class ProcessadorDeLancamentosFinanceiros : IRequestHandler<ComandoDeLancamentoFinanceiro>
+    public class ProcessadorDeLancamentos : IRequestHandler<ComandoDeLancamentoFinanceiro>
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -14,7 +14,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         private readonly IRepositorioDeContas repositorioDeContas;
 
-        public ProcessadorDeLancamentosFinanceiros(IUnitOfWork unitOfWork, IMediator mediator, IRepositorioDeContas repositorioDeContas)
+        public ProcessadorDeLancamentos(IUnitOfWork unitOfWork, IMediator mediator, IRepositorioDeContas repositorioDeContas)
         {
             this.unitOfWork = unitOfWork;
 

@@ -9,7 +9,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 {
     public abstract class AoProcessarUmPagamento : RabbitMQIntegrationTest
     {
-        private readonly ProcessamentoDeLancamentosFinanceirosRabbitMQService sut;
+        private readonly ProcessadorDeLancamentosProtocoladosRabbitMQ sut;
 
         private readonly Mock<IMediator> mediatorMock;
 
@@ -25,7 +25,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
             IServiceScopeFactory serviceScopeFactory = services.BuildServiceProvider().GetService<IServiceScopeFactory>();
 
-            sut = new ProcessamentoDeLancamentosFinanceirosRabbitMQService(configuration, serviceScopeFactory);
+            sut = new ProcessadorDeLancamentosProtocoladosRabbitMQ(configuration, serviceScopeFactory);
         }
 
         public override void Act()

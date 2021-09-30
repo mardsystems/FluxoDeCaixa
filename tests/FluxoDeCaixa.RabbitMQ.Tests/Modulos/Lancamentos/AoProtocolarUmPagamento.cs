@@ -6,7 +6,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 {
     public abstract class AoProtocolarUmPagamento : RabbitMQIntegrationTest
     {
-        private readonly ProtocolamentoDeLancamentosFinanceirosRabbitMQService sut;
+        private readonly ProtocoladorDeLancamentosRabbitMQ sut;
 
         public const string CONST_FILA_NOME = "pagamentos";
 
@@ -14,7 +14,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         public AoProtocolarUmPagamento()
         {
-            sut = new ProtocolamentoDeLancamentosFinanceirosRabbitMQService(configuration);
+            sut = new ProtocoladorDeLancamentosRabbitMQ(configuration);
         }
 
         public override void Act()

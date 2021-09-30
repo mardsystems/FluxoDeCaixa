@@ -34,7 +34,7 @@ namespace FluxoDeCaixa.Modulos.Fluxos
         public decimal Total { get; set; }
 
         /// <summary>
-        /// Comparando com o dia anterior se houve aumento do caixa ou queda em percentual no formato(xxx.x%).
+        /// Comparando com o dia anterior se houve aumento do caixa ou queda em percentual no formato(000.0%).
         /// </summary>
         [JsonPropertyName("posicao_do_dia")]
         public decimal PosicaoDoDia { get; set; }

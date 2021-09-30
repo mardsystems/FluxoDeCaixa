@@ -18,7 +18,7 @@ namespace FluxoDeCaixa.Modulos.Fluxos
 
         public decimal Total { get; set; }
 
-        public decimal Percentual { get; set; }
+        public decimal PosicaoDoDia { get; set; }
 
         public FluxoDeCaixa()
         {

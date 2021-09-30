@@ -20,7 +20,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         private readonly FluxoDeCaixaDbContext db;
 
-        private readonly ProcessadorDeLancamentosFinanceiros sut;
+        private readonly ProcessadorDeLancamentos sut;
 
         private readonly Mock<IMediator> mediatorMock;
 
@@ -44,7 +44,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
             repositorioDeContas = scope.ServiceProvider.GetRequiredService<IRepositorioDeContas>();
 
-            sut = new ProcessadorDeLancamentosFinanceiros(
+            sut = new ProcessadorDeLancamentos(
                 unitOfWork,
                 mediatorMock.Object,
                 repositorioDeContas

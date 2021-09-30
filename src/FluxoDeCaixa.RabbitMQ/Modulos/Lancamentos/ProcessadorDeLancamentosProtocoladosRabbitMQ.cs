@@ -15,7 +15,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
     /// <summary>
     /// Serviço RabbitMQ para processar lançamentos financeiros.
     /// </summary>
-    public class ProcessamentoDeLancamentosFinanceirosRabbitMQService : IRequestHandler<ComandoParaProcessarLancamentosFinanceiros>, IDisposable
+    public class ProcessadorDeLancamentosProtocoladosRabbitMQ : IRequestHandler<ComandoParaProcessarLancamentosFinanceiros>, IDisposable
     {
         private readonly Dictionary<TipoDeLancamento, string> queueBy;
 
@@ -31,7 +31,7 @@ namespace FluxoDeCaixa.Modulos.Lancamentos
 
         private IServiceScope consumerScope;
 
-        public ProcessamentoDeLancamentosFinanceirosRabbitMQService(IConfiguration configuration, IServiceScopeFactory scopeFactory)
+        public ProcessadorDeLancamentosProtocoladosRabbitMQ(IConfiguration configuration, IServiceScopeFactory scopeFactory)
         {
             queueBy = new Dictionary<TipoDeLancamento, string>();
 
