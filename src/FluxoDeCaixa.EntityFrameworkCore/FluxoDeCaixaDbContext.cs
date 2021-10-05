@@ -1,4 +1,4 @@
-﻿using FluxoDeCaixa.Modulos.Lancamentos;
+﻿using FluxoDeCaixa.Modulos.Contas;
 using Microsoft.EntityFrameworkCore;
 
 namespace FluxoDeCaixa

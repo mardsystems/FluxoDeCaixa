@@ -62,6 +62,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Cross-Cutting", "6 - Cr
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3549A712-F1A2-4DA1-806B-3AE41966BF83}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Especificação", "0 - Especificação", "{67E0236B-1223-473F-972B-20E5C00A4DC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Specs", "specs\FluxoDeCaixa.Specs\FluxoDeCaixa.Specs.csproj", "{E4228F0F-055D-4300-ABD6-19B29BD23621}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -140,6 +144,10 @@ Global
 		{3549A712-F1A2-4DA1-806B-3AE41966BF83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3549A712-F1A2-4DA1-806B-3AE41966BF83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3549A712-F1A2-4DA1-806B-3AE41966BF83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4228F0F-055D-4300-ABD6-19B29BD23621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4228F0F-055D-4300-ABD6-19B29BD23621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4228F0F-055D-4300-ABD6-19B29BD23621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4228F0F-055D-4300-ABD6-19B29BD23621}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +173,7 @@ Global
 		{331B664B-8011-4213-9CC4-566C7C944044} = {51EB84F1-708C-4D47-A271-D8FB7A24D464}
 		{7D701998-9674-4F28-8A28-64A80280123F} = {85A4D83C-E878-4494-AECB-72505EE30CD7}
 		{B24EB61A-1BEC-4D71-8672-B83D23A7B1DB} = {51EB84F1-708C-4D47-A271-D8FB7A24D464}
+		{E4228F0F-055D-4300-ABD6-19B29BD23621} = {67E0236B-1223-473F-972B-20E5C00A4DC1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7C1E9A1-3A37-48C1-AC8D-339ABC42DB6D}

@@ -29,7 +29,7 @@ namespace FluxoDeCaixa.Modulos.Fluxos
             Encargos = new List<Lancamento>();
         }
 
-        public void AdicionaEntrada(Lancamentos.Lancamento lancamento)
+        public void AdicionaEntrada(Contas.Lancamento lancamento)
         {
             var entrada = new Lancamento(lancamento.Data, lancamento.Descricao, lancamento.Valor);
 
@@ -38,7 +38,7 @@ namespace FluxoDeCaixa.Modulos.Fluxos
             Total = Total + entrada.Valor;
         }
 
-        public void AdicionaSaida(Lancamentos.Lancamento lancamento)
+        public void AdicionaSaida(Contas.Lancamento lancamento)
         {
             var saida = new Lancamento(lancamento.Data, lancamento.Descricao, lancamento.Valor);
 

@@ -1,5 +1,5 @@
 ﻿using FluxoDeCaixa.Modulos.Fluxos;
-using FluxoDeCaixa.Modulos.Lancamentos;
+using FluxoDeCaixa.Modulos.Contas;
 using FluxoDeCaixa.Modulos.Politicas;
 using MediatR;
 using Microsoft.Extensions.Configuration;

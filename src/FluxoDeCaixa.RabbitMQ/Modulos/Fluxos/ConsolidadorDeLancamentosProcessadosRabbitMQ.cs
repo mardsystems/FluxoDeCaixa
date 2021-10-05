@@ -1,4 +1,4 @@
-﻿using FluxoDeCaixa.Modulos.Lancamentos;
+﻿using FluxoDeCaixa.Modulos.Contas;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQ.Client;
