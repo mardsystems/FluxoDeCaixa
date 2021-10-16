@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modulos\Fluxos\" />
+    <Folder Include="Modules\Fluxos\" />
   </ItemGroup>
 
   <ItemGroup>

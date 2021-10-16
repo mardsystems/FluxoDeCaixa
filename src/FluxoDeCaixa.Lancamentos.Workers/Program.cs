@@ -1,4 +1,4 @@
-using FluxoDeCaixa.Modulos.Contas;
+using FluxoDeCaixa.Modules.Contas;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

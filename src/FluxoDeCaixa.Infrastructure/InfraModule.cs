@@ -1,6 +1,6 @@
-﻿using FluxoDeCaixa.Modulos.Fluxos;
-using FluxoDeCaixa.Modulos.Contas;
-using FluxoDeCaixa.Modulos.Politicas;
+﻿using FluxoDeCaixa.Modules.Fluxos;
+using FluxoDeCaixa.Modules.Contas;
+using FluxoDeCaixa.Modules.Politicas;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Modulos\Contas\LancamentosFinanceirosStepDefinition.cs">
+    <Compile Update="Modules\Contas\LancamentosFinanceirosStepDefinition.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

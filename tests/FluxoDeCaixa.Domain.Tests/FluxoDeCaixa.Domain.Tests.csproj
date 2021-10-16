@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modulos\Fluxos\" />
-    <Folder Include="Modulos\Politicas\" />
+    <Folder Include="Modules\Fluxos\" />
+    <Folder Include="Modules\Politicas\" />
   </ItemGroup>
 
   <ItemGroup>
